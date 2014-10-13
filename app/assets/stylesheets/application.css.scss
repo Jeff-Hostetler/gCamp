@@ -1,0 +1,74 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+div{
+  font-family: "Comic Sans MS"
+}
+
+#JumboTop{
+  background-image: url(https://farm8.staticflickr.com/7285/8743593650_82f9358a91_o.jpg);
+  background-position: 50% 10%;
+  background-size: cover
+}
+
+#toptext{
+  color: white;
+  text-align: center
+}
+#toptext2{
+  color: white;
+  text-align: center
+}
+
+#top{
+  background-color: orange
+}
+
+#Jumbo {
+  background-color: #B2B2CC
+}
+
+#col1 {
+  background-color: #85A3FF
+}
+
+#col2 {
+  background-color: #85A3FF
+}
+
+#col3 {
+  background-color: #85A3FF
+}
+#s1 {
+  border: 1px solid black;
+}
+#s2 {
+  border: 1px solid black;
+}
+#s3 {
+  border: 1px solid black;
+}
+#footer{
+  text-align: left
+}
+
+#aboutPage{
+  text-align: center
+}
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
