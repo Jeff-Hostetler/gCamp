@@ -2,61 +2,47 @@
 @import "bootstrap";
 
 
-div{
-  font-family: "Comic Sans MS"
+div {
+  font-family: "Comic Sans MS";
+}
+.navbar{
+  background-color: orange;
 }
 
-#JumboTop{
+.jumbotron {
   background-image: url(https://farm8.staticflickr.com/7285/8743593650_82f9358a91_o.jpg);
   background-position: 50% 10%;
-  background-size: cover
+  background-size: cover;
+  text-align: center;
+
+  h1, h4 {
+    color: white;
+    text-align: center;
+  }
 }
 
-#toptext{
+.panel-heading {
+  background-color: blue;
+}
+.panel-body{
+  text-align: left;
+}
+
+.quotes{
+  color:white;
+  text-align: left;
+}
+
+footer{
+  text-align: left;
+}
+
+.aboutPage{
+  text-align: center;
+}
+.quotes{
   color: white;
-  text-align: center
 }
-#toptext2{
-  color: white;
-  text-align: center
-}
-
-#top{
-  background-color: orange
-}
-
-#Jumbo {
-  background-color: #B2B2CC
-}
-
-#col1 {
-  background-color: #85A3FF
-}
-
-#col2 {
-  background-color: #85A3FF
-}
-
-#col3 {
-  background-color: #85A3FF
-}
-#s1 {
-  border: 1px solid black;
-}
-#s2 {
-  border: 1px solid black;
-}
-#s3 {
-  border: 1px solid black;
-}
-#footer{
-  text-align: left
-}
-
-#aboutPage{
-  text-align: center
-}
-
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
