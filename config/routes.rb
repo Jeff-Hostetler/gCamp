@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 root "pages#index"
 get "about" => "pages#about", name: :about
 get "terms" => "pages#terms", name: :terms
+get "faq" => "pages#faq", name: :faq
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
