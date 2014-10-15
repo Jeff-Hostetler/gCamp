@@ -59,12 +59,10 @@
       </div>
 
     <div class="quotes">
-    <p><%= @obama.quotation %></p>
-    <br>
-    <p><%= @guy.quotation %></p>
-    <br>
-    <p><%= @kanye.quotation %></p>
-    </div>
+    <% @quotes.each do |quote| %>
+      <p>"<%= quote.speech %>"</p>
+      <p style="color: gray"> -- <%= quote.author %></p>
+    <% end %>
   </div>
 
      <!-- /container -->

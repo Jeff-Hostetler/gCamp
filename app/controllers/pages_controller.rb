@@ -12,5 +12,7 @@ class PagesController < ApplicationController
     @kanye = Quote.new
     @kanye.author = "Kanye West"
     @kanye.speech = "gCamp is nothing. I am GOD!"
+
+    @quotes = [@obama, @guy, @kanye]
   end
 end
