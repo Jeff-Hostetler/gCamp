@@ -1,12 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  padding-top: 70px;
+  }
 
 div {
   font-family: "Comic Sans MS";
-}
-.navbar{
-  background-color: orange;
 }
 
 .jumbotron {
@@ -20,6 +20,8 @@ div {
     text-align: center;
   }
 }
+
+
 
 .panel-heading {
   background-color: blue;
