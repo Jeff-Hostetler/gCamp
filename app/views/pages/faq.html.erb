@@ -1,0 +1,21 @@
+<body>
+  <div class="container">
+    <br></br>
+    <h1>Frequently Asked Questions</h1>
+    <br>
+      <div class="row">
+        <div class="col-md-8">
+          <%@faqs.each do |faq| %>
+            <h3><%= faq.question %></h3>
+              <p><%= faq.answer %></p>
+              <br>
+          <% end %>
+        </div>
+      </div>
+    <hr style="height:2px;border-width:0;background-color:gray">
+
+    <footer style="text-align-left">
+      <p> <%= link_to("About", about_path) %> | <%= link_to("Terms", terms_path) %> | FAQ</p>
+    </footer>
+  </div>
+</body>
