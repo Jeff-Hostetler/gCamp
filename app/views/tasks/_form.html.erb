@@ -12,30 +12,35 @@
   <% end %>
 
 
-  <div class="form-horizontal">
-      <%= f.label :description, class:"col-sm-1" %>
-      <%= f.text_field :description, class:"col-md-2" %>
-
-    <br>
-    <% if (params.has_key?(:id)) %>
-      <div class="checkbox">
-          <%= f.check_box :complete, class:"col-sm-3" %>
-          <%= f.label :complete, class:"col-lg-3" %>
-      </div>
-    <% else %>
-
-    <% end %>
-    <br>
-
-    <%= f.label :due, class:"col-md-1" %>
-    <%= f.date_field :due, class:"col-md-2" %>
-
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <%= f.label :description, class:"col-sm-1 control-label"%>
+    <div class="col-sm-11">
+      <%= f.text_field :description, class:"form-control, col-sm-2", type:"text"%>
+    </div>
   </div>
-
   <br></br>
-  <br></br>
+  <div class="form-group">
+    <%= f.label :due, class:"col-sm-1 control-label"%>
+    <div class="col-sm-10">
+      <%= f.date_field :due, type:"date" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-11">
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :complete %> Complete
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-11">
+      <%= f.submit class:"btn btn-primary" %>
+    </div>
+  </div>
+</form>
 
-
-    <%= f.submit class:"btn btn-primary" %>
 
 <% end %>
