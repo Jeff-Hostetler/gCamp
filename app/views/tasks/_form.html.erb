@@ -14,7 +14,7 @@
 
   <div class="form-horizontal">
       <%= f.label :description, class:"col-sm-1" %>
-      <%= f.text_field :description, class:"col-md-2 col-md-push-0" %>
+      <%= f.text_field :description, class:"col-md-2" %>
 
     <br>
     <% if (params.has_key?(:id)) %>
@@ -28,7 +28,7 @@
     <br>
 
     <%= f.label :due, class:"col-sm-1" %>
-    <%= f.date_field :due, class:"col-md-2 col-md-push-0" %>
+    <%= f.date_field :due, class:"col-md-2" %>
 
   </div>
 
