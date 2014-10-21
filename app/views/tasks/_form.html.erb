@@ -25,10 +25,16 @@
     <% else %>
 
     <% end %>
+    <br>
+
+    <%= f.label :due, class:"col-sm-1" %>
+    <%= f.date_field :due, class:"col-md-2 col-md-push-0" %>
 
   </div>
 
   <br></br>
+  <br></br>
+
 
     <%= f.submit class:"btn btn-primary" %>
 
