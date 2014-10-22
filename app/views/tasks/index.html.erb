@@ -14,6 +14,8 @@
   <tbody>
 
     <% @tasks.each do |task| %>
+    <% require 'date' %>
+    <% current_date = Date.today %>
       <%if task.due == nil %>
         <tr>
           <td><%= task.description%></td>

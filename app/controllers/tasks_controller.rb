@@ -71,9 +71,7 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:description, :complete, :due)
     end
-  def current_date
-    require 'date'
-    @current_date = Date.today
-  end
+
+
 
 end
