@@ -14,7 +14,7 @@
 
 <form class="form-horizontal" role="form">
   <div class="form-group">
-    <%= f.label :description, class:"col-sm-1 control-label"%>
+    <%= f.label :description, class:"form-control, col-sm-1 control-label"%>
     <div class="col-sm-11">
       <%= f.text_field :description, class:"form-control, col-sm-3", type:"text"%>
     </div>
@@ -22,9 +22,9 @@
   <br></br>
 
   <div class="form-group">
-    <label for="due" class="col-sm-1 control-label">Due Date</label>
+    <label for="due" class="form-control, col-sm-1 control-label">Due Date</label>
     <div class="col-sm-11">
-      <%= f.date_field :due, type:"date", class:"col-sm-2" %>
+      <%= f.date_field :due, type:"date", class:"form-control, col-sm-2" %>
     </div>
   </div>
 
