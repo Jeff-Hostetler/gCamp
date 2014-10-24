@@ -1,6 +1,8 @@
 <div class="page-header">
+
   <h1>Tasks<%= link_to 'Create Task', new_task_path, class:"btn btn-info btn-large, pull-right" %></h1>
 </div>
+
 
 <table class="table">
   <thead>
@@ -22,27 +24,39 @@
           <td><%= task.description%></td>
           <td><%= task.complete%></td>
           <td>Blank</td>
-          <td><%= link_to 'Show ', task, class:"btn btn-success btn-large, col-md-offset-12" %> </td>
-          <td><%= link_to 'Edit ', edit_task_path(task), class:"btn btn-info btn-large, col-md-offset-12" %></td>
-          <td><%= link_to 'Destroy ', task, class:"btn btn-danger btn-large, col-md-offset-8", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <div class="pull-right" >
+              <%= link_to 'Show ', task, class:"btn btn-success btn-large" %>
+              <%= link_to 'Edit ', edit_task_path(task), class:"btn btn-info btn-large" %>
+              <%= link_to 'Destroy ', task, class:"btn btn-danger btn-large", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+        </td>
         </tr>
       <%elsif (task.due - current_date).to_i < 7 %>
         <tr class="danger">
           <td><%= task.description%></td>
           <td><%= task.complete%></td>
           <td><%= task.due%></td>
-          <td><%= link_to 'Show ', task, class:"btn btn-success btn-large, col-md-offset-12" %> </td>
-          <td><%= link_to 'Edit ', edit_task_path(task), class:"btn btn-info btn-large, col-md-offset-12" %></td>
-          <td><%= link_to 'Destroy ', task, class:"btn btn-danger btn-large, col-md-offset-8", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <div class="pull-right">
+              <%= link_to 'Show ', task, class:"btn btn-success btn-large" %>
+              <%= link_to 'Edit ', edit_task_path(task), class:"btn btn-info btn-large" %>
+              <%= link_to 'Destroy ', task, class:"btn btn-danger btn-large", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </td>
         </tr>
       <%else%>
         <tr>
-          <td><%= task.description%></td>
-          <td><%= task.complete%></td>
-          <td><%= task.due%></td>
-          <td><%= link_to 'Show ', task, class:"btn btn-success btn-large, col-md-offset-12" %> </td>
-          <td><%= link_to 'Edit ', edit_task_path(task), class:"btn btn-info btn-large, col-md-offset-12" %></td>
-          <td><%= link_to 'Destroy ', task, class:"btn btn-danger btn-large, col-md-offset-8", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= task.description %></td>
+          <td><%= task.complete %></td>
+          <td><%= task.due %></td>
+          <td>
+            <div class="pull-right">
+              <%= link_to 'Show ', task, class:"btn btn-success btn-large" %>
+              <%= link_to 'Edit ', edit_task_path(task), class:"btn btn-info btn-large" %>
+              <%= link_to 'Destroy ', task, class:"btn btn-danger btn-large", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </td>
         </tr>
       <% end %>
     <% end %>
