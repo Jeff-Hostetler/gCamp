@@ -4,12 +4,14 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-  if params[:sort] == "complete"
-    @tasks = Task.where(complete: false)
-  else
-    @tasks = Task.all
+    if params[:type] == "incomplete"
+      @tasks = Task.where(complete: false)
+    elsif params[:type] == "all"
+      @tasks = Task.all
+    else
+      @tasks = Task.where(complete: false)
+    end
   end
-end
 
   # GET /tasks/1
   # GET /tasks/1.json

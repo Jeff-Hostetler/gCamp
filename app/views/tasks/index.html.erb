@@ -2,8 +2,8 @@
 
   <h1>Tasks<%= link_to 'Create Task', new_task_path, class:"btn btn-info btn-large, pull-right" %></h1>
   <p class="pull-right">
-    <%= link_to_unless_current("All", tasks_path(sort: "")) %> |
-    <%= link_to_unless_current("Incomplete", tasks_path(sort: "complete")) %>
+    <%= link_to_unless_current("All", tasks_path(type: "all")) %> |
+    <%= link_to_unless_current("Incomplete", tasks_path(type: "incomplete")) %>
   </p>
 </div>
 
