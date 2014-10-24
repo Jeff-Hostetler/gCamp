@@ -41,24 +41,23 @@
     <p id="notice", class="alert alert-success"><%= notice %></p>
   <%end%>
 <%= yield %>
-<footer style="text-align-left">
-  <p><%= link_to("About", about_path) %> | <%= link_to("Terms", terms_path) %> | <%= link_to("FAQ", faq_path) %> </p>
-<div class="col-md-2 col-md-offset-10">
-  <%= link_to "www.linkedin.com/in/hostetjm/" do %>
-    <%= image_tag("LinkedIn.png", width: "20em") %>
-  <% end %>
-  <%= link_to "https://github.com/Jeff-Hostetler" do %>
-    <%= image_tag("GitHub.png", width: "20em") %>
-  <% end %>
-  <%= link_to "https://twitter.com/DreamsDontNeedU" do %>
-    <%= image_tag("Twitter.png", width: "20em") %>
-  <% end %>
-  <%= link_to "http://www.galvanize.it/school" do %>
-    <%= image_tag("galvanize.jpeg", width: "50em") %>
-  <% end %>
-
-</div>
-</footer>
+  <footer style="text-align-left">
+    <p><%= link_to("About", about_path) %> | <%= link_to("Terms", terms_path) %> | <%= link_to("FAQ", faq_path) %> </p>
+    <div class="col-md-2 col-md-offset-10">
+      <%= link_to "https://linkedin.com/in/hostetjm/" do %>
+        <%= image_tag("LinkedIn.png", width: "20em") %>
+      <% end %>
+      <%= link_to "https://github.com/Jeff-Hostetler" do %>
+        <%= image_tag("GitHub.png", width: "20em") %>
+      <% end %>
+      <%= link_to "https://twitter.com/DreamsDontNeedU" do %>
+        <%= image_tag("Twitter.png", width: "20em") %>
+      <% end %>
+      <%= link_to "http://www.galvanize.it/school" do %>
+        <%= image_tag("galvanize.jpeg", width: "50em") %>
+      <% end %>
+    </div>
+  </footer>
 </div>
 
 
