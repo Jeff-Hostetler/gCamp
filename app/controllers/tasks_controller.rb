@@ -9,6 +9,18 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(:description)
     elsif params[:type] == "incomplete" && params[:sort] == "description"
       @tasks = Task.all.order(:description).where(complete: false)
+
+    elsif params[:type] == "all" && params[:sort] == "complete"
+      @tasks = Task.all.order(:complete)
+    elsif params[:type] == "complete" && params[:sort] == "complete"
+      @tasks = Task.all.order(:complete).where(complete: false)
+
+    elsif params[:type] == "all" && params[:sort] == "due"
+      @tasks = Task.all.order(:due)
+    elsif params[:type] == "incomplete" && params[:sort] == "due"
+      @tasks = Task.all.order(:due).where(complete: false)
+
+
     elsif params[:type] == "all"
       @tasks = Task.all
     elsif params[:type] == "incomplete"

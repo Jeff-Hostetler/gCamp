@@ -17,8 +17,19 @@
       <% else %>
         <th><%= link_to("Description", tasks_path(sort: "description", type: "incomplete")) %></th>
       <% end %>
-      <th>Complete</th>
-      <th>Due Date</th>
+
+      <% if params[:type] == "all"  %>
+        <th><%= link_to("Complete", tasks_path(sort: "complete", type: "all")) %></th>
+      <% else %>
+        <th><%= link_to("Complete", tasks_path(sort: "complete", type: "incomplete")) %></th>
+      <% end %>
+
+      <% if params[:type] == "all"  %>
+        <th><%= link_to("Due Date", tasks_path(sort: "due", type: "all")) %></th>
+      <% else %>
+        <th><%= link_to("Due Date", tasks_path(sort: "due", type: "incomplete")) %></th>
+      <% end %>
+
     </tr>
   </thead>
 
