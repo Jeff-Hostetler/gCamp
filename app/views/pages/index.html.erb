@@ -5,10 +5,6 @@
     <div class="jumbotron">
       <h1>gCamp</h1>
         <h4>Your life, organized.</h4>
-
-
-
-    <div class="container">
       <div class="row">
         <br>
         <br>
@@ -58,15 +54,16 @@
         </div>
       </div>
 
-    <div class="quotes">
-    <% @quotes.each do |quote| %>
-      <p>"<%= quote.speech %>"</p>
-      <p style="color: gray"> -- <%= quote.author %></p>
-    <% end %>
-  </div>
+      <div class="quotes">
+      <% @quotes.each do |quote| %>
+        <p>"<%= quote.speech %>"</p>
+        <p style="color: gray"> -- <%= quote.author %></p>
+      <% end %>
+      </div>
 
-     <!-- /container -->
-  
+    </div>
+
+
 
   </body>
 </html>
