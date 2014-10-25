@@ -12,7 +12,11 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Description</th>
+      <% if params[:type] == "all"  %>
+        <th><%= link_to("Description", tasks_path(sort: "description", type: "all")) %></th>
+      <% else %>
+        <th><%= link_to("Description", tasks_path(sort: "description", type: "incomplete")) %></th>
+      <% end %>
       <th>Complete</th>
       <th>Due Date</th>
     </tr>
