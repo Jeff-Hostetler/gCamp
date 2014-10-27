@@ -4,13 +4,13 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /tasks/new
+  # GET /users/new
   def new
     @users = User.new
   end
 
   def create
-    @user = User.new(event_params)
+    @user = User.new(user_params)
       respond_to do |format|
         if @user.save
           format.html { redirect_to users_url, notice: 'User was successfully created.' }
@@ -18,8 +18,8 @@ class UsersController < ApplicationController
       end
   end
 
-  def event_params
+  def user_params
       params.require(:user).permit(:first_name, :last_name, :email)
-    end
+  end
 
 end

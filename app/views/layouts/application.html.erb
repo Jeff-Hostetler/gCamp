@@ -44,7 +44,10 @@
     <%= yield %>
       <div class="container">
         <footer style="text-align-left">
-          <p><%= link_to("About", about_path) %> | <%= link_to("Terms", terms_path) %> | <%= link_to("FAQ", faq_path) %> </p>
+          <p><%= link_to_unless_current("About", about_path) %> |
+             <%= link_to_unless_current("Terms", terms_path) %> |
+             <%= link_to_unless_current("FAQ", faq_path) %> |
+             <%= link_to_unless_current("Users", users_path) %></p>
           <div class="col-md-2 col-md-offset-10">
             <%= link_to "https://linkedin.com/in/hostetjm/" do %>
               <%= image_tag("LinkedIn.png", width: "20em") %>
