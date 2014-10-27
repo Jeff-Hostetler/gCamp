@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   def index
     @index_page =true
-    
+
     @obama = Quote.new
     @obama.author = "President Obama"
     @obama.speech = "Let me be clear, gCamp is the best."
