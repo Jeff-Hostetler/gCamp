@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
   # GET /tasks
   # GET /tasks.json
   def index
@@ -27,6 +26,11 @@ class TasksController < ApplicationController
       @tasks = Task.all.where(complete: false)
     else
       @tasks = Task.all.where(complete: false)
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @tasks.as_csv }
     end
 
   end

@@ -9,8 +9,11 @@
     <%= link_to_unless_current("Incomplete", tasks_path(type: "incomplete")) %>
     <% end %>
   </small>
-  <%= link_to 'Create Task', new_task_path, class:"btn btn-info btn-large, pull-right" %></h1>
+  <%= link_to 'Create Task', new_task_path, class:"btn btn-info btn-large, pull-right" %>
+  </h1>
 </div>
+
+
 
 
 <table class="table">
@@ -86,6 +89,9 @@
     <% end %>
   </tbody>
 </table>
+<br>
+<%= link_to 'Download CSV list', tasks_path(format: "csv"), class:"btn btn-info btn-large, pull-right" %>
+<br>
 <hr></hr>
 
 <br>
