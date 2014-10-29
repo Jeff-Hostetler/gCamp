@@ -28,10 +28,18 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_url, notice: 'user was successfully updated.'}    
+        format.html { redirect_to users_url, notice: 'user was successfully updated.'}
       else
         format.html { render :edit }
       end
+    end
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.'}
+      format.json { head :no_content }
     end
   end
 

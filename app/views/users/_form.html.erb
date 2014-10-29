@@ -42,5 +42,19 @@
         <%= f.submit class:"btn btn-primary" %>
       </div>
     </div>
+  <br></br>
+
+    <% if (params.has_key?(:id)) %>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4">
+          <div class="well">
+            <%= link_to 'Delete User', @user, class:"btn btn-danger btn-large, col-sm-offset-4", method: :delete %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </form>
+
 <% end %>
+</br></br>
+</br></br>
