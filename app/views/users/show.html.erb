@@ -1,12 +1,19 @@
-<br></br>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @user.first_name %> <%= @user.last_name %>
+</h1>
+<br></br>
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first_name %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name %>
 </p>
 <p>
   <strong>Email:</strong>
-  <%= @user.email%>
+  <%= mail_to(@user.email)%>
 </p>
 <br></br>
 
