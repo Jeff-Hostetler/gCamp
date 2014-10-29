@@ -6,17 +6,18 @@
                         class:"btn btn-info btn-large, pull-right" %>
   </h1>
 </div>
-<br></br>
-<p>
-  <strong>First Name:</strong>
-  <%= @user.first_name %>
-</p>
-<p>
-  <strong>Last Name:</strong>
-  <%= @user.last_name %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= mail_to(@user.email)%>
-</p>
-<br></br>
+
+<dl class="dl-horizontal">
+
+    <dt>First Name:</dt>
+    <dd><%= @user.first_name %></dd>
+    <br>
+
+    <dt>Last Name:</dt>
+    <dd><%= @user.last_name %></dd>
+    <br>
+
+    <dt>Email:</dt>
+    <dd><%= mail_to(@user.email)%></dd>
+
+</dl>

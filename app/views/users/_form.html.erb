@@ -48,7 +48,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-4">
           <div class="well">
-            <%= link_to 'Delete User', @user, class:"btn btn-danger btn-large, col-sm-offset-4", method: :delete %>
+            <%= link_to 'Delete User', @user, class:"btn btn-danger btn-large, col-sm-offset-4", method: :delete, data: { confirm: 'Are you sure?' }%>
           </div>
         </div>
       </div>
