@@ -3,6 +3,13 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    # can refactor below by dropping == "specific"
+    #
+    # also can
+    # if params this
+    #   @tasks=@task.this
+    # if params that
+    #   @task= @task.that
 
     if params[:type] == "all" && params[:sort] == "description"
       @tasks = Task.all.order(:description)

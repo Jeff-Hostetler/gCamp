@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :users
   resources :projects
 
+get "/signup" => "registrations#new", as: :signup
+
+
 root "pages#index"
 get "about" => "pages#about", name: :about
 get "terms" => "pages#terms", name: :terms
