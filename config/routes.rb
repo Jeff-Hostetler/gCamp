@@ -3,12 +3,16 @@ Rails.application.routes.draw do
   resources :tasks
   resources :users
   resources :projects
+root "pages#index"
+
+get "/login" => "sessions#new", as: :login
+post "/login" => "sessions#login"
+delete 'logout' => 'sessions#logout'
 
 get "/signup" => "registrations#new", as: :signup
 post '/signup' => 'registrations#create'
 
 
-root "pages#index"
 get "about" => "pages#about", name: :about
 get "terms" => "pages#terms", name: :terms
 get "faq" => "pages#faq", name: :faq
