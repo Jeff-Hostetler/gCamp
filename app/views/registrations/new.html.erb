@@ -1,18 +1,19 @@
 <br></br>
-
-<%= form_for @user, url: signup_path do |f| %>
-
-  <% if @user.errors.present? %>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
   <div class="col-sm-12">
-    <div class="col-sm-offset-2 col-sm-6">
+    <div class="col-sm-offset-4 col-sm-4">
       <div class="well">
-      <h1>Sign Up for gCamp!</h1>
+        <h3>Sign Up for gCamp!</h3>
+
+      <div style="color:red">
+      <%= form_for @user, url: signup_path do |f| %>
+        <% if @user.errors.present? %>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
       <br>
 
       <div>

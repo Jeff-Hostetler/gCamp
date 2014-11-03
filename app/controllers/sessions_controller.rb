@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         redirect_to user
       else
-        flash[:notice] = 'Incorrect password and/or email. Please try again.'
+        @login_error = "Incorrect email/password combination."
         render :new
       end
   end
