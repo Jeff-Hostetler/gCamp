@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :projects
 
 get "/signup" => "registrations#new", as: :signup
+post '/signup' => 'registrations#create'
 
 
 root "pages#index"
