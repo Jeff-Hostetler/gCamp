@@ -30,7 +30,11 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-        <li><a href="\signup">Sign Up</a></li>
+        <% if current_user %>
+          <li><%= link_to(current_user.first_name, current_user) %></li>
+        <% else %>
+          <li><a href="\signup">Sign Up</a></li>
+        <% end %>
         <li><a href="#">Sign In</a></li>
       </ul>
       </div>
