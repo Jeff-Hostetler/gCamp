@@ -35,8 +35,10 @@
           <%= link_to(current_user.email, current_user) %></li>
           <li><%= link_to("Sign Out", logout_path, method: :delete) %></li>
         <% else %>
-          <li><a href="\signup">Sign Up</a></li>
-          <li><a href="\login">Sign In</a></li>
+          <li class="<%= 'active' if (current_page?(signup_path)) %>"
+          ><a href="\signup">Sign Up</a></li>
+          <li class="<%= 'active' if (current_page?(login_path)) || (@login_error)%>"
+          ><a href="\login">Sign In</a></li>
         <% end %>
 
       </ul>
