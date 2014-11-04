@@ -10,6 +10,7 @@ class RegistrationsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
+      @signup_error = true
       render :new
     end
   end
