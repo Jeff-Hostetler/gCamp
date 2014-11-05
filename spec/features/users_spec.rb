@@ -46,9 +46,10 @@ feature "users" do
       password_confirmation: "password"
     )
     visit users_path
-    expect(page).to have_content("TEST")
-    click_on "Destroy"
-    expect(page).to have_no_content("TEST")
+    expect(page).to have_content("First Last")
+    click_on "Edit"
+    click_on "Delete User"
+    expect(page).to have_no_content("First Last")
   end
 
 end
