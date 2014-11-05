@@ -12,9 +12,9 @@
   <% end %>
 
 
-  <form class="form-horizontal" role="form">
+
     <div class="form-group">
-      <label for="first_name" class="form-control, col-sm-2 control-label">First Name</label>
+      <%= f.label :first_name, class:"form-control, col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.text_field :first_name, class:"form-control, col-sm-5", type:"text"%>
       </div>
@@ -22,7 +22,7 @@
   <br></br>
 
     <div class="form-group">
-      <label for="last_name" class="form-control, col-sm-2 control-label">Last Name</label>
+      <%= f.label :last_name, class:"form-control, col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.text_field :last_name, type:"text", class:"form-control, col-sm-5" %>
       </div>
@@ -30,7 +30,7 @@
     <br></br>
 
     <div class="form-group">
-      <label for="email" class="form-control, col-sm-2 control-label">Email</label>
+      <%= f.label :email, class:"form-control, col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.email_field :email, type:"email", class:"form-control, col-sm-5" %>
       </div>
@@ -39,7 +39,7 @@
 
     <% if current_page?(new_user_path) %>
     <div class="form-group">
-      <label for="password" class="form-control, col-sm-2 control-label">Password</label>
+      <%= f.label :password, class:"form-control, col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.password_field :password, type:"password", class:"form-control, col-sm-5" %>
       </div>
@@ -47,7 +47,7 @@
     <br></br>
 
     <div class="form-group">
-      <label for="password" class="form-control, col-sm-2 control-label">Password Confirmation</label>
+      <%= f.label :password_confirmation, class:"form-control, col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.password_field :password_confirmation, type:"password", class:"form-control, col-sm-5" %>
       </div>
@@ -71,7 +71,6 @@
         </div>
       </div>
     <% end %>
-  </form>
 
 <% end %>
 </br></br>
