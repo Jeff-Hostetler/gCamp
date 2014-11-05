@@ -18,5 +18,32 @@ feature "projects" do
     expect(page).to have_content('Project successfully created')
   end
 
-  scenario "update project" d
+  scenario "update project" do
+
+    Project.create!(
+      name: "TEST"
+    )
+    visit projects_path
+    expect(page).to have_content("TEST")
+    click_on "TEST"
+    expect(page).to have_content("TEST")
+    click_on "Edit"
+    fill_in "Name", with: "test"
+    click_on "Update Project"
+    expect(page).to have_content("test")
+    expect(page).to have_content("Project was successfully updated.")
+  end
+
+  scenario "delete project" do
+    Project.create!(
+      name: "TEST"
+    )
+    visit projects_path
+    expect(page).to have_content("TEST")
+    click_on "TEST"
+    click_on "Destroy"
+    expect(page).to have_no_content("TEST")
+
+  end
+
 end
