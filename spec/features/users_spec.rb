@@ -13,7 +13,7 @@ feature "users" do
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
     click_on "Create User"
-    expect(page).to have_content('First')
+    expect(page).to have_content('First Last')
     expect(page).to have_content('User was successfully created.')
     end
 
@@ -33,6 +33,7 @@ feature "users" do
     click_on "Edit"
     fill_in "First name", with: "First1"
     fill_in "Last name", with: "Last1"
+    # save_and_open_page
     click_on "Update User"
     expect(page).to have_content("First1 Last1")
   end
