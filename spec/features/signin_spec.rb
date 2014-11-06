@@ -23,14 +23,16 @@ feature "registration/ session" do
   #
   # end
 
-  # scenario "try to register with invalid info" do
-  #
-  #   visit root_path
-  #   click_on "Sign Up"
-  #   click_button "Sign Up"
-  #   expect(page).to have_content("Email can't be blank")
+  scenario "try to register with invalid info" do
 
-  # end
+    visit root_path
+    click_on "Sign Up"
+    save_and_open_page
+    click_button "Sign Up"
+
+    expect(page).to have_content("Email can't be blank")
+
+  end
 
   scenario "user tries to sign in with invalid info" do
 

@@ -10,53 +10,38 @@
           <ul>
             <% @user.errors.full_messages.each do |message| %>
               <li><%= message %></li>
-            <% end %>
+              <% end %>
           </ul>
         <% end %>
       </div>
       <br>
 
       <div>
-        <%= f.label :first_name, class:"control-label" %>
-        <div class:"col-sm-12">
+        <%= f.label :first_name %>
         <%= f.text_field :first_name, class:"form-control" %>
-        </div>
       </div>
-
       <div>
         <%= f.label :last_name %>
-        <div class:"col-sm-12">
         <%= f.text_field :last_name, class:"form-control" %>
-        </div>
       </div>
-
       <div>
         <%= f.label :email %>
-        <div class:"col-sm-12">
-            <%= f.email_field :email, class:"form-control" %>
-        </div>
+        <%= f.email_field :email, class:"form-control" %>
       </div>
-
       <div>
         <%= f.label :password %>
-        <div class:"col-sm-12">
         <%= f.password_field :password, class:"form-control"  %>
-        </div>
       </div>
-
       <div>
         <%= f.label :password_confirmation %>
-        <div class:"col-sm-12">
         <%= f.password_field :password_confirmation, class:"form-control"  %>
-        </div>
       </div>
       <br>
-
       <div>
         <%= f.submit "Sign Up", class:"btn btn-primary" %>
       </div>
+
     </div>
   </div>
   </div>
-
 <% end %>
