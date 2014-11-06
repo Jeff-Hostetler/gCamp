@@ -4,16 +4,16 @@
       <div class="well">
         <h3>Sign Up for gCamp!</h3>
 
-      <div style="color:red">
       <%= form_for(@user, url: signup_path) do |f| %>
         <% if @user.errors.present? %>
           <ul>
             <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+              <div style="color:red">
+                <li><%= message %></li>
+              </div>
               <% end %>
           </ul>
         <% end %>
-      </div>
       <br>
 
       <div>

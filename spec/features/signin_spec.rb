@@ -2,35 +2,31 @@ require 'rails_helper'
 
 feature "registration/ session" do
 
-  # scenario "register a user valid info" do
-  #
-  #   visit root_path
-  #   expect(page).to have_no_content("First Last")
-  #   click_on "Sign Up"
+  scenario "register a user valid info" do
 
-    # fill_in "First name", with: "First"
-    #
-    # fill_in "Last name", with: "Last"
-    # fill_in "Email", with: "test1@test.com"
-    # fill_in "Password", with: "password"
-    # fill_in "Password confirmation", with: "password"
+    visit root_path
+    expect(page).to have_no_content("First Last")
+    click_on "Sign Up"
+    fill_in "First name", with: "First"
+    fill_in "Last name", with: "Last"
+    fill_in "Email", with: "test1@test.com"
+    fill_in "Password", with: "password"
+    fill_in "Password confirmation", with: "password"
+    click_button("Sign Up")
+    expect(page).to have_content("First Last")
+    # new user can logout
+    click_on("Sign Out")
+    expect(page).to have_no_content("First Last")
 
-    # click_button("Sign Up")
-    # save_and_open_page
-
-
-  #   expect(page).to have_content("First Last")
-  #
-  # end
+  end
 
   scenario "try to register with invalid info" do
 
     visit root_path
     click_on "Sign Up"
-    save_and_open_page
     click_button "Sign Up"
-
     expect(page).to have_content("Email can't be blank")
+    expect(page).to have_content("Password can't be blank")
 
   end
 
