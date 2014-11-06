@@ -3,19 +3,20 @@ require 'rails_helper'
 feature "registration/ session" do
 
   # scenario "register a user valid info" do
+  #
+  #   visit root_path
+  #   expect(page).to have_no_content("First Last")
+  #   click_on "Sign Up"
 
-    # visit root_path
-    # expect(page).to have_no_content("First Last")
-    # click_on "Sign Up"
-    #
     # fill_in "First name", with: "First"
     #
     # fill_in "Last name", with: "Last"
     # fill_in "Email", with: "test1@test.com"
     # fill_in "Password", with: "password"
     # fill_in "Password confirmation", with: "password"
-    # save_and_open_page
+
     # click_button("Sign Up")
+    # save_and_open_page
 
 
   #   expect(page).to have_content("First Last")
@@ -34,12 +35,10 @@ feature "registration/ session" do
   scenario "user tries to sign in with invalid info" do
 
     visit root_path
-    # save_and_open_page
     click_on "Sign In"
     fill_in "Email", with: "blog@test.com"
     fill_in "Password", with: "test"
     click_button "Sign In"
-    save_and_open_page
     expect(page).to have_content "Incorrect email/password combination."
 
   end
@@ -59,8 +58,8 @@ feature "registration/ session" do
     fill_in "Email", with: "test@test.com"
     fill_in "Password", with: "test"
     click_button "Sign In"
-    save_and_open_page
     expect(page).to have_content("Test Test")
+    # sign out test here
     click_on "Sign Out"
     expect(page).to have_no_content("Test Test")
 
