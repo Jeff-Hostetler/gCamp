@@ -2,6 +2,13 @@ require 'rails_helper'
 
 feature "tasks" do
 
+  scenario "attept to create blank task" do
+    visit tasks_path
+    click_on "Create Task"
+    click_on "Create Task"
+    expect(page).to have_content("Description can't be blank")
+  end
+
   scenario "create task" do
     visit tasks_path
     expect(page).to have_no_content("testtask")
