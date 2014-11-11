@@ -1,7 +1,7 @@
 
 == README
 
-[![Build Status](https://travis-ci.org/Jeff-Hostetler/gCamp.svg?branch=master)](https://travis-ci.org/Jeff-Hostetler/gCamp)
+![Build Status](https://travis-ci.org/Jeff-Hostetler/gCamp.svg?branch=master)](https://travis-ci.org/Jeff-Hostetler/gCamp)
 
 * GitHub repo => https://github.com/Jeff-Hostetler/gCamp
 
