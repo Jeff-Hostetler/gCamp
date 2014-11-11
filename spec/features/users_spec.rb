@@ -31,6 +31,25 @@ feature "users" do
     expect(page).to have_content("Email has already been taken")
   end
 
+  scenario "attempt to edit user with invalid info" do
+    User.create!(
+      first_name: "First",
+      last_name: "Last",
+      email: "test@test.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+    visit users_path
+    expect(page).to have_content("First Last")
+    click_on "First Last"
+    click_on "Edit"
+    fill_in "First name", with: ""
+    fill_in "Last name", with: ""
+    fill_in "Email", with: ""
+    click_on "Update User"
+    expect(page).to have_content("3 errors prohibited this from being saved")
+  end
+
   scenario "create user" do
     visit root_path
     click_on "Users"
