@@ -8,14 +8,14 @@
           <ul>
           <% @task.errors.full_messages.each do |message| %>
             <li><%= message %></li>
-            </div>
+      <% end %>
         </div>
       </div>
-      <% end %>
+    </div>
       </ul>
   <% end %>
 
-
+  <div class="form-horizontal">
     <div class="form-group">
       <div class="col-sm-12">
         <%= f.label :description, class:" col-sm-1 "%>
@@ -24,11 +24,11 @@
         </div>
       </div>
     </div>
-    <br></br>
+
 
     <div class="form-group">
       <div class="col-sm-12">
-        <label for="due" class="form-control, col-sm-1 control-label">Due Date</label>
+        <%= f.label :due, class:"col-sm-1" %>
         <div class="col-sm-2">
           <%= f.date_field :due, class:"form-control" %>
         </div>
@@ -36,7 +36,6 @@
     </div>
 
     <% if (params.has_key?(:id)) %>
-    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-11">
         <div class="checkbox">
           <label>
@@ -44,15 +43,14 @@
           </label>
         </div>
       </div>
-    </div>
     <%end%>
 
-    <br></br>
     <div class="form-group">
       <div class="col-sm-offset-1">
         <%= f.submit class:"btn btn-primary" %>
       </div>
     </div>
+  </div>
 
 
 <% end %>

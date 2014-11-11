@@ -2,11 +2,20 @@ require 'rails_helper'
 
 feature "tasks" do
 
-  scenario "attept to create blank task" do
+  scenario "attempt to create blank task and blank date" do
     visit tasks_path
     click_on "Create Task"
     click_on "Create Task"
     expect(page).to have_content("Description can't be blank")
+  end
+
+  scenario "attempt to create task with date in past " do
+    visit tasks_path
+    click_on "Create Task"
+    click_on "Create Task"
+    fill_in "Due", with: ("01/01/2014")
+    click_on "Create Task"
+    expect(page).to have_content("Due date must be in future")
   end
 
   scenario "create task" do
