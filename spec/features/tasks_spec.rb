@@ -17,7 +17,19 @@ feature "tasks" do
     click_on "Create Task"
     expect(page).to have_content("Due date must be in future")
   end
-  
+
+  scenario "attempt to edit task by added invalid data" do
+    Task.create!(
+      description: "TEST"
+      )
+    visit tasks_path
+    expect(page).to have_content("TEST")
+    click_on "Edit"
+    fill_in "Description", with: ""
+    click_on "Update Task"
+    expect(page).to have_content("Description can't be blank")
+  end
+
 
   scenario "create task" do
     visit tasks_path

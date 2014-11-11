@@ -10,6 +10,8 @@ feature "projects" do
     expect(page).to have_content("Name can't be blank")
   end
 
+  #add coverage for unsuccessful update for all
+
   scenario "create project" do
     visit root_path
     expect(page).to have_content("Projects")
