@@ -1,5 +1,7 @@
-![](https://travis-ci.org/Jeff-Hostetler/gCamp.svg)
+
 == README
+
+![](https://travis-ci.org/Jeff-Hostetler/gCamp.svg)
 
 * GitHub repo => https://github.com/Jeff-Hostetler/gCamp
 
