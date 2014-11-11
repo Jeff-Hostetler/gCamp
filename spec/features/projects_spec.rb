@@ -2,6 +2,14 @@ require 'rails_helper'
 
 feature "projects" do
 
+  scenario 'attempt to create blank project' do
+    visit root_path
+    click_on "Projects"
+    click_on "Create Project"
+    click_on "Add Project"
+    expect(page).to have_content("Name can't be blank")
+  end
+
   scenario "create project" do
     visit root_path
     expect(page).to have_content("Projects")
