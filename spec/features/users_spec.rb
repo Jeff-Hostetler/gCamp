@@ -2,6 +2,35 @@ require 'rails_helper'
 
 feature "users" do
 
+  scenario "attempt to create user will no info add" do
+    visit root_path
+    click_on "Users"
+    click_on "Create User"
+    click_on "Create User"
+    expect(page).to have_content('4 errors prohibited')
+  end
+
+  scenario "attempt to login user will email that is taken" do
+    User.create!(
+      first_name: "First",
+      last_name: "Last",
+      email: "test@test.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+
+    visit root_path
+    click_on "Users"
+    click_on "Create User"
+    fill_in "First name", with: "First"
+    fill_in "Last name", with: "Last"
+    fill_in "Email", with: "test@test.com"
+    fill_in "Password", with: "password"
+    fill_in "Password confirmation", with: "password"
+    click_on "Create User"
+    expect(page).to have_content("Email has already been taken")
+  end
+
   scenario "create user" do
     visit root_path
     click_on "Users"
@@ -9,7 +38,7 @@ feature "users" do
     click_on "Create User"
     fill_in "First name", with: "First"
     fill_in "Last name", with: "Last"
-    fill_in "Email", with: "email"
+    fill_in "Email", with: "email@email.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
     click_on "Create User"

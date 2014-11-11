@@ -3,8 +3,8 @@
 </div>
 <div class="form-horizontal">
 
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
+  <%= form_for(@project) do |f| %>
+    <% if @project.errors.any? %>
       <div class="col-sm-offset-1 col-sm-12">
         <div class='col-sm-6'>
           <div class="alert alert-danger">
@@ -32,8 +32,9 @@
         <%= f.submit "Add Project", class:"btn btn-primary" %>
       </div>
 
-  </div>
+
 
 <% end %>
+</div>
 </br></br>
 </br></br>

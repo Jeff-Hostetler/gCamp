@@ -1,16 +1,19 @@
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <div class="col-sm-offset-1 col-sm-12">
+      <div class='col-sm-6'>
+        <div class="alert alert-danger">
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <h5><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h5>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+    <% end %>
+      </div>
     </div>
+  </div>
+    </ul>
   <% end %>
-
 <div class="form-horizontal">
 
 
@@ -44,7 +47,8 @@
 
 
 
-    <% if current_page?(new_user_path) %>
+    <% if (params.has_key?(:id)) %>
+    <% else %>
       <div class="form-group">
         <div class="col-sm-12">
           <%= f.label :password, class:"col-sm-2 control-label" %>
@@ -61,8 +65,8 @@
           </div>
         </div>
       </div>
-
     <% end %>
+    
   <div class="form-group">
     <div class="col-sm-12">
       <div class="col-sm-offset-2 col-sm-10">

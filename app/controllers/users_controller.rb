@@ -17,12 +17,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    respond_to do |format|
     @user = User.new(user_params)
-        if @user.save
-          format.html { redirect_to users_url, notice: 'User was successfully created.' }
-        end
-      end
+    if @user.save
+      redirect_to users_url, notice: 'User was successfully created.'
+    else
+      render :new
+    end
   end
 
   def update
