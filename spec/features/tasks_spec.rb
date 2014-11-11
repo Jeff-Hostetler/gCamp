@@ -17,6 +17,7 @@ feature "tasks" do
     click_on "Create Task"
     expect(page).to have_content("Due date must be in future")
   end
+  
 
   scenario "create task" do
     visit tasks_path
