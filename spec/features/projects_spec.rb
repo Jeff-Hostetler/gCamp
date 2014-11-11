@@ -6,11 +6,21 @@ feature "projects" do
     visit root_path
     click_on "Projects"
     click_on "Create Project"
-    click_on "Add Project"
+    click_on "Create Project"
     expect(page).to have_content("Name can't be blank")
   end
 
-  #add coverage for unsuccessful update for all
+  scenario 'attempt to update Project with invalid data' do
+    Project.create!(
+      name: "TEST"
+    )
+    visit projects_path
+    click_on "TEST"
+    click_on "Edit"
+    fill_in "Name", with: ""
+    click_on "Update Project"
+    expect(page).to have_content("Name can't be blank")
+  end
 
   scenario "create project" do
     visit root_path
@@ -22,7 +32,7 @@ feature "projects" do
     click_on "Create Project"
 
     fill_in "Name", with: "This is a name"
-    click_on "Add Project"
+    click_on "Create Project"
 
     expect(page).to have_content('This is a name')
     expect(page).to have_content('Project successfully created')
