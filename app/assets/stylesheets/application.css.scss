@@ -1,7 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+.breadcrumb{
+  background-color: white;
+}
 .jumbotron {
   background-image: url(https://farm8.staticflickr.com/7285/8743593650_82f9358a91_o.jpg);
   background-position: 50% 10%;

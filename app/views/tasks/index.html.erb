@@ -1,19 +1,23 @@
 <div class="page-header">
 
   <h1>Tasks for <%= @project.name %>
-  <small class="col-md-offset-8", style="font-size:15px">
-    <%= link_to_unless_current("All", project_tasks_path(@project, type: "all")) %> |
-    <% if params[:type] == nil %>
-      Incomplete
-    <% else %>
-    <%= link_to_unless_current("Incomplete", project_tasks_path(@project, @project, type: "incomplete")) %>
-    <% end %>
-  </small>
-  <%= link_to 'Create Task', new_project_task_path(@project), class:"btn btn-info btn-large, pull-right" %>
+    <small class="col-md-offset-6", style="font-size:15px">
+      <%= link_to_unless_current("All", project_tasks_path(@project, type: "all")) %> |
+      <% if params[:type] == nil %>
+        Incomplete
+      <% else %>
+      <%= link_to_unless_current("Incomplete", project_tasks_path(@project, @project, type: "incomplete")) %>
+      <% end %>
+    </small>
+    <%= link_to 'Create Task', new_project_task_path(@project), class:"btn btn-info btn-large, pull-right" %>
   </h1>
 </div>
 
-
+<ol class="breadcrumb">
+  <li><a href="/projects">Projects</a></li>
+  <li><%= link_to @project.name, @project %></li>
+  <li class="active">Tasks</li>
+</ol>
 
 
 <table class="table">

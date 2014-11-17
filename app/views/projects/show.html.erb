@@ -11,6 +11,11 @@
   </h1>
 </div>
 
+<ol class="breadcrumb">
+  <li><a href="/projects">Projects</a></li>
+  <li class="active"><%= @project.name %></li>
+</ol>
+
 <%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project) %>
 
 <br><br><br><br>
