@@ -46,7 +46,7 @@ feature "tasks" do
     visit root_path
     click_on "Projects"
     click_on "TEST"
-    click_on "1 Tasks"
+    click_on "1 Task"
     click_on "Edit"
     fill_in "Description", with: ""
     click_on "Update Task"
@@ -84,7 +84,7 @@ feature "tasks" do
     visit root_path
     click_on "Projects"
     click_on "TEST"
-    click_on "1 Tasks"
+    click_on "1 Task"
     click_on "Edit"
     fill_in "Description", with: "testtask"
     click_on "Update Task"
@@ -105,7 +105,7 @@ feature "tasks" do
     visit root_path
     click_on "Projects"
     click_on "TEST"
-    click_on "1 Tasks"
+    click_on "1 Task"
     expect(page).to have_content("TEST TASK")
     click_on "Destroy"
     expect(page).to have_no_content("TEST TASK")
