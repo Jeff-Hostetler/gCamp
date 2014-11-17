@@ -1,7 +1,7 @@
 <div class="page-header">
 
   <h1>Tasks for <%= @project.name %>
-    <small class="col-md-offset-6", style="font-size:15px">
+    <small class="col-md-offset-5", style="font-size:15px">
       <%= link_to_unless_current("All", project_tasks_path(@project, type: "all")) %> |
       <% if params[:type] == nil %>
         Incomplete
