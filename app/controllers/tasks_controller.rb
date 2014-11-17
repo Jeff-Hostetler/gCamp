@@ -69,7 +69,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
     else
-      format.html { render :new }
+      render :new 
     end
   end
 
