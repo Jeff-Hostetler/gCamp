@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
 
-  resources :tasks
+  root "pages#index"
   resources :users
-  resources :projects
-root "pages#index"
-
-get "/login" => "sessions#new", as: :login
-post "/login" => "sessions#login"
-delete 'logout' => 'sessions#logout'
-
-get "/signup" => "registrations#new", as: :signup
-post '/signup' => 'registrations#create'
+  resources :projects do
+    resources :tasks
+  end
 
 
-get "about" => "pages#about", name: :about
-get "terms" => "pages#terms", name: :terms
-get "faq" => "pages#faq", name: :faq
-get "tasks" => "tasks#index", name: :tasks
+  get "/login" => "sessions#new", as: :login
+  post "/login" => "sessions#login"
+  delete 'logout' => 'sessions#logout'
+
+  get "/signup" => "registrations#new", as: :signup
+  post '/signup' => 'registrations#create'
+
+
+  get "about" => "pages#about", name: :about
+  get "terms" => "pages#terms", name: :terms
+  get "faq" => "pages#faq", name: :faq
+  get "tasks" => "tasks#index", name: :tasks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

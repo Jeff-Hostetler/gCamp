@@ -1,5 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
+
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
   # GET /tasks
   # GET /tasks.json
   def index
@@ -12,27 +16,27 @@ class TasksController < ApplicationController
     #   @task= @task.that
 
     if params[:type] == "all" && params[:sort] == "description"
-      @tasks = Task.all.order(:description)
+      @tasks = @project.tasks.order(:description)
     elsif params[:type] == "incomplete" && params[:sort] == "description"
-      @tasks = Task.all.order(:description).where(complete: false)
+      @tasks = @project.tasks.order(:description).where(complete: false)
 
     elsif params[:type] == "all" && params[:sort] == "complete"
-      @tasks = Task.all.order(:complete)
+      @tasks = @project.tasks.order(:complete)
     elsif params[:type] == "complete" && params[:sort] == "complete"
-      @tasks = Task.all.order(:complete).where(complete: false)
+      @tasks = @project.tasks.order(:complete).where(complete: false)
 
     elsif params[:type] == "all" && params[:sort] == "due"
-      @tasks = Task.all.order(:due)
+      @tasks = @project.tasks.order(:due)
     elsif params[:type] == "incomplete" && params[:sort] == "due"
-      @tasks = Task.all.order(:due).where(complete: false)
+      @tasks = @project.tasks.order(:due).where(complete: false)
 
 
     elsif params[:type] == "all"
-      @tasks = Task.all
+      @tasks = @project.tasks
     elsif params[:type] == "incomplete"
-      @tasks = Task.all.where(complete: false)
+      @tasks = @project.tasks.where(complete: false)
     else
-      @tasks = Task.all.where(complete: false)
+      @tasks = @project.tasks.where(complete: false)
     end
 
     respond_to do |format|
@@ -45,65 +49,56 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @task = @project.tasks.find(params[:id])
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = @project.tasks.new
   end
 
   # GET /tasks/1/edit
   def edit
+    @task = @project.tasks.find(params[:id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    @task = @project.tasks.new(task_params)
+    if @task.save
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
+    else
+      format.html { render :new }
     end
   end
 
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.'}
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    @task = @project.tasks.find(params[:id])
+    if @task.update(task_params)
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @task = @project.tasks.find(params[:id])
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.'}
-      format.json { head :no_content }
-    end
+    redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:description, :complete, :due)
+      params.require(:task).permit(:description, :complete, :due, :project_id)
     end
 
 

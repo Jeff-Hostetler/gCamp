@@ -11,6 +11,8 @@ class Task < ActiveRecord::Base
     end
   end
 
+  belongs_to :project
+
 
   def self.as_csv
   CSV.generate do |csv|
