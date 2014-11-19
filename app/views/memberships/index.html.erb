@@ -2,6 +2,12 @@
   <h1><%= @project.name %>: Manage Members</h1>
 </div>
 
+<ol class="breadcrumb">
+  <li><a href="/projects">Projects</a></li>
+  <li><%= link_to @project.name, @project %></li>
+  <li class="active">Memberships</li>
+</ol>
+
 <%= render 'form_new' %>
 
   <br><br><br>

@@ -11,7 +11,7 @@ class MembershipsController < ApplicationController
   def create
     @membership = @project.memberships.new(params.require(:membership).permit(:project_id, :user_id, :role))
     if @membership.save
-      redirect_to project_memberships_path
+      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was added successfully"
     else
       render :index
     end
@@ -24,7 +24,7 @@ class MembershipsController < ApplicationController
   def update
     @membership = @project.memberships.find(params[:id])
     if @membership.update(params.require(:membership).permit(:project_id, :user_id, :role))
-      redirect_to project_memberships_path
+      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was updated successfully"
     else
       render :index
     end
@@ -33,7 +33,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @project.memberships.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path
+    redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was updated deleted"
   end
 
 
