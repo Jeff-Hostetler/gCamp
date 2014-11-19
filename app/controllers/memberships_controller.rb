@@ -1,7 +1,15 @@
 class MembershipsController < ApplicationController
 
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
+
   def index
     @memberships = Membership.all
+  end
+
+  def form_new
+    @membership = Membership.new
   end
 
   def create
@@ -11,6 +19,10 @@ class MembershipsController < ApplicationController
     else
       render :index
     end
+  end
+
+  def edit
+    @membership = Membership.find(params[:id])
   end
 
   def update
@@ -25,5 +37,7 @@ class MembershipsController < ApplicationController
   def destroy
     Membership.find(params[:id]).destoy
   end
+
+  
 
 end
