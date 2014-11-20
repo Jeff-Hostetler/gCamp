@@ -1,6 +1,5 @@
 <% @project.users.each do |user| %>
   <% user.memberships.where(project_id: @project.id).each do |membership| %>
-
     <div class="col-sm-12">
       <div class="form-inline">
         <%= form_for [@project, membership] do |f| %>
