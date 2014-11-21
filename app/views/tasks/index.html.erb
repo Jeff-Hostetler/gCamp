@@ -52,7 +52,7 @@
     <% current_date = Date.today %>
       <%if task.due == nil %>
         <tr>
-          <td><%= link_to task.description, project_task_path(@project, task)%></td>
+          <td><%= link_to task.description, project_task_path(@project, task)%> <span class="badge"> <%= task.comments.count %></span></td>
           <td><%= task.complete%></td>
           <td>Blank</td>
           <td>
@@ -64,7 +64,7 @@
         </tr>
       <%elsif (task.due - current_date).to_i < 7 %>
         <tr class="danger">
-          <td><%= link_to task.description, project_task_path(@project, task)%></td>
+          <td><%= link_to task.description, project_task_path(@project, task)%> <span class="badge"> <%= task.comments.count %></span></td>
           <td><%= task.complete%></td>
           <td><%= task.due%></td>
           <td>
@@ -76,7 +76,7 @@
         </tr>
       <%else%>
         <tr>
-          <td><%= link_to task.description, project_task_path(@project, task)%></td>
+          <td><%= link_to task.description, project_task_path(@project, task)%> <span class="badge"> <%= task.comments.count %></span></td>
           <td><%= task.complete %></td>
           <td><%= task.due %></td>
           <td>
