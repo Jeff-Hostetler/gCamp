@@ -20,7 +20,43 @@
   <%= @task.complete %>
 </p>
 
-<h3>Comments</h3>
+<table>
+  <thead>
+    <th>
+      <h3>Comments</h3>
+    </th>
+  </thead>
+  <tbody>
+    <% @task.comments.each do |comment| %>
+      <tr>
+        <td class="col-md-3">
+          <%= link_to comment.user.full_name, user_path(comment.user) %>
+        </td>
+        <td class="col-md-9">
+          <%= comment.description %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_project_task_path(@project, @task) %> |
-<%= link_to 'Back', project_tasks_path(@project) %>
+<% comment = Comment.new %>
+<%= form_for [@project, @task, comment] do |f| %>
+
+  <div class="col-md-offset-3">
+    <div class="col-md-12">
+      <div class="form-group">
+        <div class="col-md-9">
+
+          <%= f.text_field :description, size: 1000, class:"form-control" %>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div class="col-md-12">
+      <div class= "form-group">
+          <%= f.submit class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

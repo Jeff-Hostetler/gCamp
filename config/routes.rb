@@ -2,10 +2,14 @@ Rails.application.routes.draw do
 
   root "pages#index"
   resources :users
+
   resources :projects do
-    resources :tasks
+    resources :tasks do
+      resources :comments
+    end
     resources :memberships
   end
+
 
 
   get "/login" => "sessions#new", as: :login

@@ -1,8 +1,7 @@
 class Task < ActiveRecord::Base
 
   validates :description, presence: true
-
-   validate :due_date_not_in_future
+  validate :due_date_not_in_future
   def  due_date_not_in_future
     if due != nil && id == nil
       if (due < Date.today)
@@ -11,6 +10,7 @@ class Task < ActiveRecord::Base
     end
   end
 
+  has_many :comments
   belongs_to :project
 
 
