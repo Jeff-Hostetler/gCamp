@@ -107,7 +107,7 @@ feature "tasks" do
     click_on "TEST"
     click_on "1 Task"
     expect(page).to have_content("TEST TASK")
-    click_on "Destroy"
+    click_on "delete"
     expect(page).to have_no_content("TEST TASK")
   end
 
