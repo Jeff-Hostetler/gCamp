@@ -52,40 +52,37 @@
     <% current_date = Date.today %>
       <%if task.due == nil %>
         <tr>
-          <td><%= task.description%></td>
+          <td><%= link_to task.description, project_task_path(@project, task)%></td>
           <td><%= task.complete%></td>
           <td>Blank</td>
           <td>
             <div class="pull-right" >
-              <%= link_to 'Show ', project_task_path(@project, task), class:"btn btn-success btn-large" %>
               <%= link_to 'Edit ', edit_project_task_path(@project, task), class:"btn btn-info btn-large" %>
-              <%= link_to 'Destroy ', project_task_path(@project, task), class:"btn btn-danger btn-large", method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to '', project_task_path(@project, task), class:"glyphicon glyphicon-remove", method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
         </td>
         </tr>
       <%elsif (task.due - current_date).to_i < 7 %>
         <tr class="danger">
-          <td><%= task.description%></td>
+          <td><%= link_to task.description, project_task_path(@project, task)%></td>
           <td><%= task.complete%></td>
           <td><%= task.due%></td>
           <td>
             <div class="pull-right">
-              <%= link_to 'Show ', project_task_path(@project, task), class:"btn btn-success btn-large" %>
               <%= link_to 'Edit ', edit_project_task_path(@project, task), class:"btn btn-info btn-large" %>
-              <%= link_to 'Destroy ', project_task_path(@project, task), class:"btn btn-danger btn-large", method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to '', project_task_path(@project, task), class:"glyphicon glyphicon-remove", method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
           </td>
         </tr>
       <%else%>
         <tr>
-          <td><%= task.description %></td>
+          <td><%= link_to task.description, project_task_path(@project, task)%></td>
           <td><%= task.complete %></td>
           <td><%= task.due %></td>
           <td>
             <div class="pull-right">
-              <%= link_to 'Show ', project_task_path(@project, task), class:"btn btn-success btn-large" %>
               <%= link_to 'Edit ', edit_project_task_path(@project, task), class:"btn btn-info btn-large" %>
-              <%= link_to 'Destroy ', project_task_path(@project, task), class:"btn btn-danger btn-large", method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to '', project_task_path(@project, task), class:"glyphicon glyphicon-remove", method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
           </td>
         </tr>

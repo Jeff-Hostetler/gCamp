@@ -11,6 +11,7 @@ class Task < ActiveRecord::Base
   end
 
   has_many :comments
+  has_many :tasks, through: :comments
   belongs_to :project
 
 
