@@ -93,5 +93,30 @@ feature 'membership' do
     expect(page).to have_content("First Last was updated successfully")
   end
 
+  scenario 'user can delete membership' do
+    Project.create!(
+    name: "TEST"
+    )
+    User.create!(
+    first_name: "First",
+    last_name: "Last",
+    email: "test@test.com",
+    password: "password",
+    password_confirmation: "password"
+    )
+
+    visit root_path
+    click_on "Projects"
+    click_on "TEST"
+    click_on "0 Members"
+    select "First Last", from: "membership_user_id"
+    click_on "Add New Member"
+    expect(page).to have_content("First Last was added successfully")
+    within (".col-sm-1") do
+      click_on ""
+    end
+    expect(page).to have_content "First Last was deleted successfully"
+  end
+
 
 end
