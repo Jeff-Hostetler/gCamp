@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'comments' do
 
-  scenario "signed in user can see add comment to a task" do
+  scenario "signed in user can add comment to a task" do
     Project.create!(
       name: "TEST",
       id: 1
@@ -64,7 +64,7 @@ feature 'comments' do
     click_on "1"
     click_on "TEST TASK"
     click_on "Add Comment"
-    expect(page).to have_no_content("First Last")
+    expect(page).to have_no_content("Comment was successfully created")
   end
 
 end
