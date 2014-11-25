@@ -10,7 +10,7 @@ class Task < ActiveRecord::Base
     end
   end
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :tasks, through: :comments
   belongs_to :project
 

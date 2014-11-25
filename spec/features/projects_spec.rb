@@ -61,11 +61,11 @@ feature "projects" do
     visit projects_path
     expect(page).to have_content("TEST")
     click_on "TEST"
-    click_on "Destroy"
+    click_on "Delete"
     expect(page).to have_no_content("TEST")
 
   end
 
-  
+
 
 end
