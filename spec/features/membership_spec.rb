@@ -25,14 +25,14 @@ feature 'membership' do
 
   scenario 'user attempts to add membership with no user assigned' do
     Project.create!(
-    name: "TEST"
+      name: "TEST"
     )
     User.create!(
-    first_name: "First",
-    last_name: "Last",
-    email: "test@test.com",
-    password: "password",
-    password_confirmation: "password"
+      first_name: "First",
+      last_name: "Last",
+      email: "test@test.com",
+      password: "password",
+      password_confirmation: "password"
     )
 
     visit root_path
@@ -45,14 +45,14 @@ feature 'membership' do
 
   scenario 'user attempts to add membership with a user that already has a membership' do
     Project.create!(
-    name: "TEST"
+      name: "TEST"
     )
     User.create!(
-    first_name: "First",
-    last_name: "Last",
-    email: "test@test.com",
-    password: "password",
-    password_confirmation: "password"
+      first_name: "First",
+      last_name: "Last",
+      email: "test@test.com",
+      password: "password",
+      password_confirmation: "password"
     )
 
     visit root_path
@@ -69,14 +69,14 @@ feature 'membership' do
 
   scenario 'membership can be updated' do
     Project.create!(
-    name: "TEST"
+      name: "TEST"
     )
     User.create!(
-    first_name: "First",
-    last_name: "Last",
-    email: "test@test.com",
-    password: "password",
-    password_confirmation: "password"
+      first_name: "First",
+      last_name: "Last",
+      email: "test@test.com",
+      password: "password",
+      password_confirmation: "password"
     )
 
     visit root_path
@@ -95,14 +95,14 @@ feature 'membership' do
 
   scenario 'user can delete membership' do
     Project.create!(
-    name: "TEST"
+      name: "TEST"
     )
     User.create!(
-    first_name: "First",
-    last_name: "Last",
-    email: "test@test.com",
-    password: "password",
-    password_confirmation: "password"
+      first_name: "First",
+      last_name: "Last",
+      email: "test@test.com",
+      password: "password",
+      password_confirmation: "password"
     )
 
     visit root_path
