@@ -10,33 +10,35 @@
 
 
 <% membership = Membership.new %>
-<% if @membership !=nil %>
+<%= form_for [@project, membership] do |f| %>
 <div class="form-horizontal">
-  <div class="form-group">
-    <div class="col-sm-6">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <% if @membership !=nil %>
       <%= render "shared/errors", model: @membership %>
+      <% end %>
     </div>
   </div>
-</div>
-<% end %>
-<%= form_for [@project, membership], :html => {:class => "form-inline"} do |f| %>
-<div class="col-sm-7 well">
-  <div class="form-group">
-    <div class= "col-sm-1">
-      <%= f.collection_select :user_id, User.all, :id, :full_name,
-      {include_blank: "Please select a user"},
-      {class: "form-control"}%>
-    </div>
-  </div>
+  <div class="col-sm-7 well">
+    <div class="form-group">
+      <div class="form-inline">
+        <div class= "col-sm-4">
+          <%= f.collection_select :user_id, User.all, :id, :full_name,
+          {include_blank: "Please select a user"},
+          {class: "form-control"}%>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <div class="col-sm-1">
-      <%= f.select :role, ["member", "owner"], {}, {class:"form-control"} %>
-    </div>
-  </div>
+      <div class="form-inline">
+        <div class="col-sm-3">
+          <%= f.select :role, ["member", "owner"], {}, {class:"form-control"} %>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <%= f.submit "Add New Member", class:"btn btn-primary form-control"%>
+      <div class="form-inline">
+        <%= f.submit "Add New Member", class:"btn btn-primary form-control"%>
+      </div>
+    </div>
   </div>
 </div>
 <% end %>
@@ -68,7 +70,7 @@
       </div>
 
       <div class ="form-inline">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
           <%= link_to "", project_membership_path(@project, membership), class:"glyphicon glyphicon-remove", method: :delete, data:{confirm: "Are you sure you want to delete this membership?"} %>
         </div>
       </div>
