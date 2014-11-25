@@ -87,7 +87,7 @@ feature 'membership' do
     click_on "Add New Member"
     expect(page).to have_content("First Last was added successfully")
     within(".edit_membership") do
-      select "admin", from: "membership_role"
+      select "owner", from: "membership_role"
     end
     click_on "Update"
     expect(page).to have_content("First Last was updated successfully")
