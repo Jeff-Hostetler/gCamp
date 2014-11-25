@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save {|user| user.email=user.email.downcase}
 
   has_many :comments
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :projects, through: :memberships
   has_many :tasks, through: :comments
 

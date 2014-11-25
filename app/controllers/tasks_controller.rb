@@ -44,6 +44,7 @@ class TasksController < ApplicationController
       format.csv { send_data @tasks.as_csv }
     end
 
+
   end
 
   # GET /tasks/1
@@ -69,7 +70,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
     else
-      render :new 
+      render :new
     end
   end
 
