@@ -86,7 +86,7 @@ feature 'membership' do
     select "First Last", from: "membership_user_id"
     click_on "Add New Member"
     expect(page).to have_content("First Last was added successfully")
-    within(".col-sm-3") do
+    within(".edit_membership") do
       select "admin", from: "membership_role"
     end
     click_on "Update"
@@ -112,7 +112,7 @@ feature 'membership' do
     select "First Last", from: "membership_user_id"
     click_on "Add New Member"
     expect(page).to have_content("First Last was added successfully")
-    within (".col-sm-1") do
+    within (".col-sm-6") do
       click_on ""
     end
     expect(page).to have_content "First Last was deleted successfully"
