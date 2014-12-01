@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 feature 'membership' do
+  scenario "visitor attempts to view membership" do
+    Project.create!(
+    name: "TEST",
+    id: 1
+    )
+    visit "/projects/1/memberships"
+    expect(page).to have_content("You must be logged in to access that action")
+
+  end
 
   scenario 'can add valid membership' do
     Project.create!(
@@ -21,6 +30,8 @@ feature 'membership' do
     select "First Last", from: "membership_user_id"
     click_on "Add New Member"
     expect(page).to have_content("First Last was added successfully")
+    expect(page).to have_content("First Last")
+    expect(page).to have_content("member")
   end
 
   scenario 'user attempts to add membership with no user assigned' do
@@ -91,6 +102,8 @@ feature 'membership' do
     end
     click_on "Update"
     expect(page).to have_content("First Last was updated successfully")
+    expect(page).to have_content("First Last")
+    expect(page).to have_content("owner")
   end
 
   scenario 'user can delete membership' do

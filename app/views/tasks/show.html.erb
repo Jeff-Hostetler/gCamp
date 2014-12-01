@@ -44,6 +44,7 @@
         </td>
         <td class="col-md-9">
           <%= comment.description %>
+          <br>
         </td>
       </tr>
     <% end %>
@@ -52,14 +53,16 @@
 <br>
 <br>
 <br>
-<% comment = Comment.new %>
-<%= form_for [@project, @task, comment] do |f| %>
+
+<%= form_for [@project, @task, @comment] do |f| %>
 
   <div class="form-horizontal">
     <div class="col-md-12">
       <div class="form-group">
         <div class="col-md-offset-3 col-md-9">
-          <%= f.text_area :description, class:"form-control" %>
+          <div style="white-space: pre-wrap">
+            <%= f.text_area :description, class:"form-control" %>
+          </div>
         </div>
       </div>
     </div>

@@ -44,7 +44,7 @@
 <% end %>
 
 <br><br><br>
-
+<!-- can refactor this round about in the controller by newing up only membership not project.membership and then defining new'd up to the project or redifining instance variable in else -->
 <% @project.users.each do |user| %>
 <% user.memberships.where(project_id: @project.id).each do |membership| %>
 <%= form_for [@project, membership] do |f| %>

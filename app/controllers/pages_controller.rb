@@ -1,6 +1,4 @@
-class PagesController < ApplicationController
-
-
+class PagesController < PublicController
 
   def index
     @index_page =true

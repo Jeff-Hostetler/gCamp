@@ -2,6 +2,14 @@ require 'rails_helper'
 
 feature "projects" do
 
+  # scenario "visitors attempts to view projects page" do
+  #   Project.create!(
+  #     name: "TEST"
+  #     id: "1"
+  #   )
+  #   vist
+  # end
+
   scenario 'attempt to create blank project' do
     visit root_path
     click_on "Projects"

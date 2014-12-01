@@ -1671,7 +1671,7 @@ mark,
 
 /* line 99, /Users/jeff/.rvm/rubies/ruby-2.1.3/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.2/assets/stylesheets/bootstrap/_type.scss */
 .text-nowrap {
-  white-space: nowrap;
+  white-space: pre-wrap;
 }
 
 /* line 102, /Users/jeff/.rvm/rubies/ruby-2.1.3/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.2/assets/stylesheets/bootstrap/_type.scss */

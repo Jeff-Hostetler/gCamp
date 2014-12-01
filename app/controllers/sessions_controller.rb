@@ -1,7 +1,6 @@
-class SessionsController < ApplicationController
+class SessionsController < PublicController
 
   def new
-    
   end
 
   def login

@@ -2,6 +2,21 @@ require 'rails_helper'
 
 feature 'comments' do
 
+  scenario "visitor attempts to view comments" do
+    Project.create!(
+    name: "TEST",
+    id: 1,
+    )
+    Task.create!(
+    description: "TEST TASK",
+    project_id: 1,
+    id: 1,
+    )
+    visit "/projects/1/tasks/1"
+    expect(page).to have_content("You must be logged in to access that action")
+
+  end
+
   scenario "signed in user can add comment to a task" do
     Project.create!(
       name: "TEST",
