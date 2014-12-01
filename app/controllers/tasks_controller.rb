@@ -4,6 +4,16 @@ class TasksController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
+
+  before_action :current_user_has_tasks_permission
+
+  def current_user_has_tasks_permission
+    @project.memberships.each do|membership|
+      unless membership.user_id == current_user.id
+        render "public/404"
+      end
+    end
+  end
   # GET /tasks
   # GET /tasks.json
   def index
@@ -51,7 +61,7 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @task = @project.tasks.find(params[:id])
-    @comment = Comment.new 
+    @comment = Comment.new
   end
 
   # GET /tasks/new

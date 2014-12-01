@@ -3,6 +3,15 @@ class MembershipsController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
+  before_action :current_user_has_membership_permission
+
+  def current_user_has_membership_permission
+    @project.memberships.each do|membership|
+      unless membership.user_id == current_user.id
+        render "public/404"
+      end
+    end
+  end
 
   def index
     @memberships = @project.memberships.all
