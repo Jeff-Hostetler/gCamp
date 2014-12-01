@@ -1,7 +1,14 @@
 class ProjectsController <  ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
+  before_action :current_user_has_project_permission
 
-
+  def current_user_has_project_permission
+    @project.memberships.each do|membership|
+      unless membership.user_id == current_user.id
+        render "public/404"
+      end
+    end
+  end
 
   def index
     @projects = Project.all
