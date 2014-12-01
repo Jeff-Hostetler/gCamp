@@ -9,7 +9,7 @@ class RegistrationsController < PublicController
     :first_name, :last_name))
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to new_project_path
     else
       @signup_error = true
       render :new

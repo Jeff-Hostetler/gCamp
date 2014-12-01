@@ -1,6 +1,6 @@
 class ProjectsController <  ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
-  
+
 
 
   def index
@@ -14,6 +14,11 @@ class ProjectsController <  ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      Membership.create!(
+        user_id: current_user.id,
+        project_id: @project.id,
+        role: "owner",
+      )
       redirect_to @project, notice: 'Project successfully created'
     else
       render :new
