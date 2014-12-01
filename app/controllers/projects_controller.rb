@@ -19,7 +19,7 @@ class ProjectsController <  ApplicationController
         project_id: @project.id,
         role: "owner",
       )
-      redirect_to @project, notice: 'Project successfully created'
+      redirect_to project_tasks_path(@project), notice: 'Project successfully created'
     else
       render :new
     end
