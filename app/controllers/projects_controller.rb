@@ -1,12 +1,13 @@
 class ProjectsController <  ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
-  before_action :current_user_has_project_permission
+  before_action :current_user_has_project_permission, except: [:index]
+  # before_action :current_user_is_owner_to_edit, only: [:edit]
 
   def current_user_has_project_permission
-    @project.memberships.each do|membership|
-      unless membership.user_id == current_user.id
-        render "public/404"
-      end
+    if @project.memberships.pluck(:user_id).include? current_user.id
+      true
+    else
+      render "public/404"
     end
   end
 

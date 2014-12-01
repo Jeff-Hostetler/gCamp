@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_action :current_user_is_not_nil
 
-
   def current_user_is_not_nil
     if current_user != nil
       true
@@ -11,7 +10,6 @@ class ApplicationController < ActionController::Base
       redirect_to login_path, notice: "You must be logged in to access that action"
     end
   end
-
 
 
 end
