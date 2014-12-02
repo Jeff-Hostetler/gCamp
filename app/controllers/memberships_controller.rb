@@ -5,13 +5,6 @@ class MembershipsController < ApplicationController
   end
   before_action :current_user_has_membership_permission
 
-  def current_user_has_membership_permission
-    if @project.memberships.pluck(:user_id).include? current_user.id
-      true
-    else
-      render "public/404"
-    end
-  end
 
   def index
     @memberships = @project.memberships.all
@@ -45,6 +38,14 @@ class MembershipsController < ApplicationController
     redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was deleted successfully"
   end
 
+  private
 
+  def current_user_has_membership_permission
+    if @project.memberships.pluck(:user_id).include? current_user.id
+      true
+    else
+      render "public/404", status: :not_found, layout: false
+    end
+  end
 
 end

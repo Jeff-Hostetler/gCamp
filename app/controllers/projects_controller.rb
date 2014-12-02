@@ -1,15 +1,7 @@
 class ProjectsController <  ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
   before_action :current_user_has_project_permission, except: [:index]
-  # before_action :current_user_is_owner_to_edit, only: [:edit]
-
-  def current_user_has_project_permission
-    if @project.memberships.pluck(:user_id).include? current_user.id
-      true
-    else
-      render "public/404"
-    end
-  end
+  before_action :current_user_is_owner_to_edit, only: [:edit]
 
   def index
     @projects = Project.all
@@ -60,6 +52,27 @@ class ProjectsController <  ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+  end
+
+  private
+
+  def current_user_has_project_permission
+    if @project.memberships.pluck(:user_id).include? current_user.id
+      true
+    else
+      render "public/404", status: :not_found, layout: false
+    end
+  end
+
+  def current_user_is_owner_to_edit
+    current_membership = @project.memberships.where(user_id: current_user.id)
+    current_membership.each do |membership|
+      if membership.role == "owner"
+        true
+      else
+        render "public/404", status: :not_found, layout: false
+      end
+    end
   end
 
 end

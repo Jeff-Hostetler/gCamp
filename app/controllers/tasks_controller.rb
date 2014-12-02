@@ -7,13 +7,6 @@ class TasksController < ApplicationController
 
   before_action :current_user_has_tasks_permission
 
-  def current_user_has_tasks_permission
-    if @project.memberships.pluck(:user_id).include? current_user.id
-      true
-    else
-      render "public/404"
-    end
-  end
   # GET /tasks
   # GET /tasks.json
   def index
@@ -105,6 +98,14 @@ class TasksController < ApplicationController
   end
 
   private
+  
+  def current_user_has_tasks_permission
+    if @project.memberships.pluck(:user_id).include? current_user.id
+      true
+    else
+      render "public/404", status: :not_found, layout: false
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
 
 
