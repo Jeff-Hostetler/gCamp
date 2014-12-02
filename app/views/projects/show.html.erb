@@ -3,8 +3,12 @@
   <h1>
     <%= @project.name %>
     <div class = 'pull-right'>
-    <%= link_to 'Edit', edit_project_path,
-                        class:"btn btn-info btn-large" %>
+      <% current_membership = @project.memberships.where(user_id: current_user.id) %>
+      <% current_membership.each do |membership| %>
+        <% if membership.role == "owner" %>
+        <%= link_to 'Edit', edit_project_path, class:"btn btn-info btn-large" %>
+        <% end %>
+      <% end %>
     </div>
   </h1>
 </div>
@@ -20,16 +24,19 @@
 <%= link_to pluralize(@project.memberships.count, "Members"),
             project_memberships_path(@project)%>
 <br><br>
-
-
-  <div class="well">
-    <strong>Delete Project</strong>
-    <br><br>
-    <p>
-      Deleting this project will delete <%= @project.memberships.count %> memberships,
-      <%= @project.tasks.count %> tasks, and associated comments.
-    </p>
-    <br>
-    <%= link_to 'Delete', @project, class:"btn btn-danger btn-large",
-    method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
+<% current_membership = @project.memberships.where(user_id: current_user.id) %>
+<% current_membership.each do |membership| %>
+  <% if membership.role == "owner" %>
+    <div class="well">
+      <strong>Delete Project</strong>
+      <br><br>
+      <p>
+        Deleting this project will delete <%= @project.memberships.count %> memberships,
+        <%= @project.tasks.count %> tasks, and associated comments.
+      </p>
+      <br>
+      <%= link_to 'Delete', @project, class:"btn btn-danger btn-large",
+      method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+<% end %>
