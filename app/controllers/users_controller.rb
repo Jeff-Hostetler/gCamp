@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   private
 
   def current_user_can_edit_own_info
-    if @user.id == current_user.id
+    if @user.id == current_user.id || current_user.admin == true
     else
       render "public/404", status: :not_found, layout: false
     end

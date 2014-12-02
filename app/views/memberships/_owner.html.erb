@@ -8,16 +8,15 @@
   <li class="active">Memberships</li>
 </ol>
 
-
-  <div class="form-horizontal">
-    <div class="form-group">
-        <div class="col-sm-6">
-        <% if @membership !=nil %>
-          <%= render "shared/errors", model: @membership %>
-        <% end %>
+  <% if @membership !=nil %>
+    <div class="form-horizontal">
+      <div class="form-group">
+          <div class="col-sm-6">
+            <%= render "shared/errors", model: @membership %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
 
 <% membership = Membership.new %>

@@ -18,11 +18,11 @@ feature 'comments' do
   end
 
   scenario "signed in user can add comment to a task" do
-    Project.create!(
+    project = Project.create!(
       name: "TEST",
       id: 1
     )
-    Task.create!(
+    task =Task.create!(
       description: "TEST TASK",
       project_id: 1
     )
@@ -33,6 +33,11 @@ feature 'comments' do
       password: "password",
       password_confirmation: "password"
     )
+    membership = Membership.create!(
+      role: "owner",
+      user_id: user.id,
+      project_id: 1
+    )
     visit root_path
     click_on "Sign In"
     fill_in "Email", with: "test@test.com"
@@ -40,10 +45,8 @@ feature 'comments' do
     within (".well") do
       click_on "Sign In"
     end
-
-    visit root_path
-    click_on "Projects"
-    click_on "1"
+    visit project_path(project)
+    click_on "1 Task"
     click_on "TEST TASK"
     fill_in "comment_description", with: "test description"
     click_on "Add Comment"
@@ -51,11 +54,11 @@ feature 'comments' do
   end
 
   scenario "signed in user attempts to create blank task" do
-    Project.create!(
+    project = Project.create!(
     name: "TEST",
     id: 1
     )
-    Task.create!(
+    task =Task.create!(
     description: "TEST TASK",
     project_id: 1
     )
@@ -66,6 +69,11 @@ feature 'comments' do
     password: "password",
     password_confirmation: "password"
     )
+    membership = Membership.create!(
+    role: "owner",
+    user_id: user.id,
+    project_id: 1
+    )
     visit root_path
     click_on "Sign In"
     fill_in "Email", with: "test@test.com"
@@ -73,10 +81,8 @@ feature 'comments' do
     within (".well") do
       click_on "Sign In"
     end
-
-    visit root_path
-    click_on "Projects"
-    click_on "1"
+    visit project_path(project)
+    click_on "1 Task"
     click_on "TEST TASK"
     click_on "Add Comment"
     expect(page).to have_no_content("Comment was successfully created")
