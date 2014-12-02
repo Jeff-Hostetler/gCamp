@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :current_user_can_edit_own_info, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -52,6 +53,15 @@ class UsersController < ApplicationController
   def user_params
       params.require(:user).permit(:first_name, :last_name, :email,
       :password, :password_confirmation)
+  end
+
+  private
+
+  def current_user_can_edit_own_info
+    if @user.id == current_user.id
+    else
+      render "public/404", status: :not_found, layout: false
+    end
   end
 
 end
