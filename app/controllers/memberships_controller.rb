@@ -46,7 +46,7 @@ class MembershipsController < ApplicationController
     if @project.memberships.pluck(:user_id).include? current_user.id
       true
     else
-      render "public/404", status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 

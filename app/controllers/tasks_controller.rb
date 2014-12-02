@@ -98,12 +98,12 @@ class TasksController < ApplicationController
   end
 
   private
-  
+
   def current_user_has_tasks_permission
     if @project.memberships.pluck(:user_id).include? current_user.id
       true
     else
-      render "public/404", status: :not_found, layout: false
+      raise AccessDenied
     end
   end
     # Use callbacks to share common setup or constraints between actions.

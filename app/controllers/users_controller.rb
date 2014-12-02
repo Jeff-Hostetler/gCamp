@@ -66,13 +66,13 @@ class UsersController < ApplicationController
   def current_user_can_edit_own_info
     if @user.id == current_user.id || current_user.admin == true
     else
-      render "public/404", status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
   def admin_can_see_user_index
     unless (current_user.admin == true)
-      render "public/404", status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
