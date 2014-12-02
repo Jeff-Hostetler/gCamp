@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   root "pages#index"
+  get "about" => "pages#about"
+  get "terms" => "pages#terms"
+  get "faq" => "pages#faq"
   resources :users
 
   resources :projects do
@@ -20,9 +23,7 @@ Rails.application.routes.draw do
   post '/signup' => 'registrations#create'
 
 
-  get "about" => "pages#about", name: :about
-  get "terms" => "pages#terms", name: :terms
-  get "faq" => "pages#faq", name: :faq
+
   get "tasks" => "tasks#index", name: :tasks
 
   # The priority is based upon order of creation: first created -> highest priority.
