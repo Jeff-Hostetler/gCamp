@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :current_user_can_edit_own_info, only: [:edit, :update]
+  before_action :admin_can_see_user_index, only: [:index]
 
   def index
     @users = User.all
@@ -18,7 +19,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    if (current_user != nil) && current_user.admin == true
+      @user = User.new(params.require(:user).permit(:first_name, :last_name, :email,
+      :password, :password_confirmation, :admin))
+    else
+      @user = User.new(user_params)
+    end
     if @user.save
       redirect_to users_url, notice: 'User was successfully created.'
     else
@@ -60,6 +66,12 @@ class UsersController < ApplicationController
   def current_user_can_edit_own_info
     if @user.id == current_user.id
     else
+      render "public/404", status: :not_found, layout: false
+    end
+  end
+
+  def admin_can_see_user_index
+    unless (current_user.admin == true)
       render "public/404", status: :not_found, layout: false
     end
   end
