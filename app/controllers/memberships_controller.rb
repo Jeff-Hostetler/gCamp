@@ -3,7 +3,9 @@ class MembershipsController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
+
   before_action :current_user_has_membership_permission
+  before_action :current_user_is_owner_to_edit
 
 
   def index
@@ -45,6 +47,17 @@ class MembershipsController < ApplicationController
       true
     else
       render "public/404", status: :not_found, layout: false
+    end
+  end
+
+  def current_user_is_owner_to_edit
+    current_membership = @project.memberships.where(user_id: current_user.id)
+    current_membership.each do |membership|
+      if membership.role == "owner"
+        @current_membership = true
+      else
+        @current_membership = false
+      end
     end
   end
 

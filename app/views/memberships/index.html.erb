@@ -1,4 +1,5 @@
-
-
-
-<%= render "owner" %>
+<% if @current_membership == true %>
+  <%= render "owner" %>
+<% else %>
+  <%= render "member" %>
+<% end %>
