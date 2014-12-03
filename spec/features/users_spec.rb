@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 feature "users" do
+  scenario "new user signs up" do
+    visit root_path
+    click_on "Sign Up"
+    fill_in "First name", with: "First"
+    fill_in "Last name", with: "Last"
+    fill_in "Email", with: "test@test.com"
+    fill_in "Password", with: "pass"
+    fill_in "Password confirmation", with: "pass"
+    within(".well") do
+      click_on "Sign Up"
+    end
+
+    expect(page).to have_content("New Project")
+  end
   scenario "user signs in" do
     user = create_user
 
