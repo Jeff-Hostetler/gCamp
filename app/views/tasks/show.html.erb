@@ -1,8 +1,9 @@
 <div class="page-header">
-  <h1><%= @task.description %>
+  <div class="pull-right">
     <%= link_to 'Edit', edit_project_task_path(@project, @task),
-        class:"btn btn-info btn-large pull-right" %>
-  </h1>
+    class:"btn btn-info btn-large" %>
+  </div>
+  <h1><%= @task.description %></h1>
 
 
 </div>
@@ -21,37 +22,6 @@
   <%= @task.complete %>
 </p>
 
-<!-- <table>
-  <thead>
-    <th>
-      <h3>Comments</h3>
-    </th>
-    <th>
-
-    </th>
-  </thead>
-  <tbody>
-    <% @task.comments.each do |comment| %>
-      <tr>
-        <td class="col-md-3">
-
-            <% if comment.user != nil %>
-              <%= link_to comment.user.full_name, user_path(comment.user) %>
-            <% else %>
-              <em>Deleted User</em>
-            <% end %>
-
-          <div class="text-muted">
-            <%= time_ago_in_words(comment.created_at) %>
-          </div>
-        </td>
-        <td class="col-md-9">
-          <%= comment.description %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> -->
 <h3>Comments</h3>
 <% @task.comments.each do |comment| %>
 <div class="row">

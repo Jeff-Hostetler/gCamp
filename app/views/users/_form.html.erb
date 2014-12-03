@@ -11,85 +11,70 @@
   </div>
 
   <div class="form-group">
-    <div class="col-sm-12">
-      <%= f.label :first_name, class:"col-sm-2 control-label" %>
-      <div class="col-sm-5">
-        <%= f.text_field :first_name, class:"form-control"%>
-      </div>
+    <%= f.label :first_name, class:"col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :first_name, class:"form-control"%>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-sm-12">
-      <%= f.label :last_name, class:"col-sm-2 control-label" %>
-      <div class="col-sm-5">
-        <%= f.text_field :last_name, class:"form-control" %>
-      </div>
+    <%= f.label :last_name, class:"col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :last_name, class:"form-control" %>
     </div>
   </div>
 
 
   <div class="form-group">
-    <div class="col-sm-12">
-      <%= f.label :email, class:"col-sm-2 control-label" %>
-      <div class="col-sm-5">
-        <%= f.email_field :email, class:"form-control" %>
-      </div>
+    <%= f.label :email, class:"col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.email_field :email, class:"form-control" %>
     </div>
   </div>
 
 
 
-    <% if (params.has_key?(:id)) %>
-    <% else %>
-      <div class="form-group">
-        <div class="col-sm-12">
-          <%= f.label :password, class:"col-sm-2 control-label" %>
-          <div class="col-sm-5">
-            <%= f.password_field :password, class:"form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-12">
-          <%= f.label :password_confirmation, class:"col-sm-2 control-label" %>
-          <div class="col-sm-5">
-            <%= f.password_field :password_confirmation, class:"form-control" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <% if (params.has_key?(:id)) %>
+  <% else %>
+  <div class="form-group">
+    <%= f.label :password, class:"col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.password_field :password, class:"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, class:"col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.password_field :password_confirmation, class:"form-control" %>
+    </div>
+  </div>
+  <% end %>
 
-    <% if current_user.admin == true %>
-      <div class="form-group">
-        <div class="col-sm-12">
-          <%= f.label :admin, class: "col-sm-2 control-label" %>
-          <div class="col-sm-5">
-            <%= f.check_box :admin, class:"form-contol" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <% if current_user.admin == true %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <label><%= f.check_box :admin, class:"form-contol" %> Admin</label>
+    </div>
+  </div>
+  <% end %>
 
   <div class="form-group">
-    <div class="col-sm-12">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit class:"btn btn-primary" %>
-      </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class:"btn btn-primary" %>
     </div>
   </div>
 
 
 
-    <% if (params.has_key?(:id)) %>
-      <div class="col-sm-12">
-        <div class="col-sm-offset-2 col-sm-4">
-          <div class="well">
-            <%= link_to 'Delete User', @user, class:"btn btn-danger btn-large, col-sm-offset-4", method: :delete, data: { confirm: 'Are you sure?' }%>
-          </div>
-        </div>
+  <% if (params.has_key?(:id)) %>
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-5">
+      <div class="well">
+        <%= link_to 'Delete User', @user, class:"btn btn-danger btn-large, col-sm-offset-4", method: :delete, data: { confirm: 'Are you sure?' }%>
       </div>
-    <% end %>
+    </div>
+  </div>
+  <% end %>
 </div>
 <% end %>
 </br></br>
