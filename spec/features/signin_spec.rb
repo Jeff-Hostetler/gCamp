@@ -62,4 +62,18 @@ feature "registration/ session" do
     expect(page).to have_no_content("Test Test")
 
   end
+
+  scenario "user is redirected to the page they want after they sign in" do
+    user = create_user
+    project = create_project
+    membership = create_owner(user, project)
+
+    visit project_path(project)
+    expect(page).to have_content("You must be logged in to access that action")
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Sign In"
+
+    expect(page).to have_content("Edit")
+  end
 end
