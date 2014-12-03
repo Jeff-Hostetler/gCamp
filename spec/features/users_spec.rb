@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 feature "users" do
+  scenario "user signs in" do
+    user = create_user
+
+    visit root_path
+    click_on "Sign In"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    within (".well") do
+      click_on "Sign In"
+    end
+
+    expect(page).to have_content("Create Project")
+  end
 
   scenario "attempt to create user will no info add" do
     user = User.create!(
@@ -107,7 +120,7 @@ feature "users" do
     click_on "Create User"
     expect(page).to have_content('First Last')
     expect(page).to have_content('User was successfully created.')
-    end
+  end
 
   scenario "admin can update user" do
     user2 = User.create!(
