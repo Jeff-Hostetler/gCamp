@@ -30,21 +30,19 @@
   <tbody>
     <% @task.comments.each do |comment| %>
       <tr>
-        <td>
+        <td class="col-md-3">
           <p>
             <% if comment.user != nil %>
-            <div class="col-md-3">
               <%= link_to comment.user.full_name, user_path(comment.user) %>
             <% else %>
               <em>Deleted User</em>
-            </div>
             <% end %>
           </p>
           <p class="text-muted">
             <%= time_ago_in_words(comment.created_at) %>
           </p>
         </td>
-        <td class="col-md-9" >
+        <td class="col-md-9">
           <%= comment.description %>
         </td>
       </tr>
