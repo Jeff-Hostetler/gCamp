@@ -1,7 +1,7 @@
 class ProjectsController <  ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
   before_action :current_user_has_project_permission, except: [:index, :new, :create, :destroy]
-  before_action :current_user_is_owner_to_edit, only: [:edit, :update]
+  before_action :current_user_is_owner_to_edit, only: [:edit, :update, :destroy]
 
   def index
     if current_user.admin == true
