@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :current_user_can_edit_own_info, only: [:edit, :update]
-  before_action :admin_can_see_user_index, only: [:index]
+
 
   def index
     @users = User.all
@@ -74,12 +74,6 @@ class UsersController < ApplicationController
   def current_user_can_edit_own_info
     if @user.id == current_user.id || current_user.admin == true
     else
-      raise AccessDenied
-    end
-  end
-
-  def admin_can_see_user_index
-    unless (current_user.admin == true)
       raise AccessDenied
     end
   end
