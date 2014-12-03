@@ -2,7 +2,7 @@ def create_admin
   User.create!(
     first_name: "Test",
     last_name: "Admin",
-    email: "test@test.com",
+    email: "admin@test.com",
     password: "password",
     password_confirmation: "password",
     admin: true,
@@ -16,6 +16,16 @@ def create_user
     email: "test@test.com",
     password: "password",
     password_confirmation: "password",
+  )
+end
+
+def create_user2
+  User.create!(
+  first_name: "Test2",
+  last_name: "User",
+  email: "test2@test.com",
+  password: "password",
+  password_confirmation: "password",
   )
 end
 
