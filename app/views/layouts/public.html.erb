@@ -63,9 +63,9 @@
             <%= link_to_unless_current("Home", root_path) %> |
             <%= link_to_unless_current("About", about_path) %> |
              <%= link_to_unless_current("Terms", terms_path) %> |
-             <%= link_to_unless_current("FAQ", faq_path) %> |
+             <%= link_to_unless_current("FAQ", faq_path) %>
              <% if current_user != nil %>
-               <%= link_to_unless_current("My Projects", projects_path) %>
+               | <%= link_to_unless_current("My Projects", projects_path) %>
              <% end %>
 
              </p>
