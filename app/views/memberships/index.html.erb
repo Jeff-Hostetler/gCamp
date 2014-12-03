@@ -1,4 +1,4 @@
-<% if @current_membership == true %>
+<% if (@current_membership == true) || (current_user.admin == true)  %>
   <%= render "owner" %>
 <% else %>
   <%= render "member" %>

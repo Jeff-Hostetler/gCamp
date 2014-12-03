@@ -5,10 +5,14 @@
     <div class = 'pull-right'>
       <% current_membership = @project.memberships.where(user_id: current_user.id) %>
       <% current_membership.each do |membership| %>
-        <% if membership.role == "owner" %>
+      <% @membership_role = membership.role %>
+        <% if (membership.role == "owner") %>
         <%= link_to 'Edit', edit_project_path, class:"btn btn-info btn-large" %>
         <% end %>
       <% end %>
+    <% if current_user.admin == true && @membership_role != "owner" %>
+      <%= link_to 'Edit', edit_project_path, class:"btn btn-info btn-large" %>
+    <% end %>
     </div>
   </h1>
 </div>
@@ -39,4 +43,17 @@
       method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
+<% end %>
+<% if current_user.admin == true && @membership_role != "owner" %>
+  <div class="well">
+    <strong>Delete Project</strong>
+    <br><br>
+    <p>
+      Deleting this project will delete <%= @project.memberships.count %> memberships,
+      <%= @project.tasks.count %> tasks, and associated comments.
+    </p>
+    <br>
+    <%= link_to 'Delete', @project, class:"btn btn-danger btn-large",
+    method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
 <% end %>

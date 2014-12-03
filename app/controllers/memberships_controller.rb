@@ -43,7 +43,7 @@ class MembershipsController < ApplicationController
   private
 
   def current_user_has_membership_permission
-    if @project.memberships.pluck(:user_id).include? current_user.id
+    if (@project.memberships.pluck(:user_id).include? current_user.id) || (current_user.admin == true)
       true
     else
       raise AccessDenied
@@ -53,7 +53,7 @@ class MembershipsController < ApplicationController
   def current_user_is_owner_to_edit
     current_membership = @project.memberships.where(user_id: current_user.id)
     current_membership.each do |membership|
-      if membership.role == "owner"
+      if (membership.role == "owner")
         @current_membership = true
       else
         @current_membership = false
