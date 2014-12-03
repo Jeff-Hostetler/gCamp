@@ -77,6 +77,14 @@ feature "projects" do
 
     expect(page).to have_content('This is a name')
     expect(page).to have_content('Project successfully created')
+
+    within(".breadcrumb") do
+      click_on "This is a name"
+    end
+    click_on "1 Member"
+    within(".edit_membership") do
+      expect(page).to have_content("owner")
+    end
   end
 
   scenario "update project" do

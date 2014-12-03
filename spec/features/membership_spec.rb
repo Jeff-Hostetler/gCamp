@@ -76,7 +76,7 @@ feature 'membership' do
       click_on "Sign In"
     end
     visit project_path(project)
-    click_on "1 Members"
+    click_on "1 Member"
     click_on "Add New Member"
     expect(page).to have_content("User can't be blank")
   end
@@ -106,7 +106,7 @@ feature 'membership' do
       click_on "Sign In"
     end
     visit project_path(project)
-    click_on "1 Members"
+    click_on "1 Member"
     select "First Last", from: "membership_user_id"
     click_on "Add New Member"
     expect(page).to have_content("User has already been taken")
