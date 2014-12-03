@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :current_user_is_not_nil
 
   def current_user_is_not_nil
+    session[:request_path] = request.fullpath
     if current_user != nil
       true
     else

@@ -55,11 +55,11 @@ class ProjectsController <  ApplicationController
     params.require(:project).permit(:name)
   end
 
+
+  private
   def set_project
     @project = Project.find(params[:id])
   end
-
-  private
 
   def current_user_has_project_permission
     if (@project.memberships.pluck(:user_id).include? current_user.id) || (current_user.admin == true)
