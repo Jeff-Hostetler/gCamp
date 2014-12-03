@@ -58,8 +58,8 @@
     <%= yield %>
       </div>
       <div class="container">
-        <footer style="text-align-left">
-          <p>
+        <footer>
+          <div class="pull-left">
             <%= link_to_unless_current("Home", root_path) %> |
             <%= link_to_unless_current("About", about_path) %> |
              <%= link_to_unless_current("Terms", terms_path) %> |
@@ -68,9 +68,9 @@
                | <%= link_to_unless_current("My Projects", projects_path) %>
              <% end %>
 
-          </p>
+          </div>
            <% if current_user == nil %>
-            <div class="col-md-2 col-md-offset-10">
+            <div class="pull-right">
               <%= link_to "https://linkedin.com/in/hostetjm/" do %>
                 <%= image_tag("LinkedIn.png", width: "20em") %>
               <% end %>
