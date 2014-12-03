@@ -25,6 +25,12 @@ def create_project
   )
 end
 
+def create_project2
+  Project.create!(
+  name: "Test Project 2",
+  )
+end
+
 def create_owner(user, project)
   Membership.create!(
     role: "owner",

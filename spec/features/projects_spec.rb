@@ -8,7 +8,7 @@ feature "projects" do
       last_name: "Last",
       email: "test@test.com",
       password: "password",
-      password_confirmation: "password"
+      password_confirmation: "password",
     )
 
     visit root_path
@@ -61,7 +61,7 @@ feature "projects" do
       last_name: "Last",
       email: "test@test.com",
       password: "password",
-      password_confirmation: "password"
+      password_confirmation: "password",
     )
 
     visit root_path
@@ -77,6 +77,7 @@ feature "projects" do
 
     expect(page).to have_content('This is a name')
     expect(page).to have_content('Project successfully created')
+    expect(page).to have_content('Tasks for This is a name')
 
     within(".breadcrumb") do
       click_on "This is a name"
@@ -145,6 +146,42 @@ feature "projects" do
     visit project_path(project)
     click_on "Delete"
     expect(page).to have_no_content("TEST")
+  end
+
+  scenario "user can see projects they are members of" do
+    project = create_project
+    project2 = create_project2
+    user = create_user
+    membership = create_member(user, project)
+
+    visit root_path
+    click_on "Sign In"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    within (".well") do
+      click_on "Sign In"
+    end
+
+    expect(page).to have_content(project.name)
+    expect(page).to have_no_content(project2.name)
+  end
+
+  scenario "admin can see all projects" do
+    project = create_project
+    project2 = create_project2
+    user = create_admin
+    membership = create_member(user, project)
+
+    visit root_path
+    click_on "Sign In"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    within (".well") do
+      click_on "Sign In"
+    end
+
+    expect(page).to have_content(project.name)
+    expect(page).to have_content(project2.name)
   end
 
 end

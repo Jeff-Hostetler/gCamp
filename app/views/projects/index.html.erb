@@ -16,9 +16,8 @@
       Tasks
     </th>
   </thead>
-
   <tbody>
-    <% current_user.projects.each do |project| %>
+    <% @projects.each do |project| %>
       <tr>
         <td>
           <%= link_to(project.name, project_path(project)) %>

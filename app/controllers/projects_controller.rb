@@ -4,7 +4,11 @@ class ProjectsController <  ApplicationController
   before_action :current_user_is_owner_to_edit, only: [:edit, :update]
 
   def index
-    @projects = Project.all
+    if current_user.admin == true
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   def new
