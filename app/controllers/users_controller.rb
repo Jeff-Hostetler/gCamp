@@ -33,13 +33,21 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.'}
+    if (current_user != nil) && current_user.admin == true
+      if @user.update(params.require(:user).permit(:first_name, :last_name, :email, :admin))
+        redirect_to @user, notice: 'User was successfully updated.'
       else
-        format.html { render :edit }
+        render :edit
+      end
+    else
+      if @user.update(params.require(:user).permit(:first_name, :last_name, :email))
+        redirect_to @user, notice: 'User was successfully updated.'
+      else
+        render :edit
       end
     end
+
+
   end
 
   def destroy
