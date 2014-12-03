@@ -1,7 +1,7 @@
 class ProjectsController <  ApplicationController
-  before_action :set_project, only: [:show, :edit, :update]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :current_user_has_project_permission, except: [:index, :new, :create, :destroy]
-  before_action :current_user_is_owner_to_edit, only: [:edit, :update]
+  before_action :current_user_is_owner_to_edit, only: [:edit, :update, :destroy]
 
   def index
     if current_user.admin == true
@@ -33,7 +33,8 @@ class ProjectsController <  ApplicationController
   end
 
   def destroy
-    Project.find(params[:id]).destroy
+    @project = Project.find(params[:id])
+    @project.destroy
     redirect_to projects_path, notice: 'Project was successfully destroyed.'
   end
 
@@ -69,6 +70,7 @@ class ProjectsController <  ApplicationController
   end
 
   def current_user_is_owner_to_edit
+    # where(role: "owner", user_id: current_user)
     current_membership = @project.memberships.where(user_id: current_user.id)
     current_membership.each do |membership|
       if (membership.role == "owner") || (current_user.admin == true)
