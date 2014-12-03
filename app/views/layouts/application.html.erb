@@ -26,7 +26,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/projects">gCamp</a>
+        <a class="navbar-brand" href="/projects"><strong>gCamp</strong></a>
       </div>
 
 
@@ -64,15 +64,15 @@
   <br></br>
 
   <% if @index_page %>
-  <div class="main_page">
-    <% else %>
+    <div class="main_page">
+  <% else %>
     <div class="container">
-      <% end %>
-      <br>
-      <% if notice != nil %>
-      <p id="notice", class="alert alert-success"><%= notice %></p>
-      <%end%>
-      <%= yield %>
+  <% end %>
+  <% if notice != nil %>
+    <br>
+    <p id="notice", class="alert alert-success"><%= notice %></p>
+  <%end%>
+  <%= yield %>
     </div>
     <div class="container">
       <footer style="text-align:center">
