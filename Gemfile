@@ -40,6 +40,8 @@ group :development, :test do
   gem 'launchy'
 end
 
+gem 'faker'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
