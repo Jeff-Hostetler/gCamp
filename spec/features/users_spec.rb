@@ -203,4 +203,59 @@ feature "users" do
     expect(page).to have_no_content("Firsty Last")
   end
 
+  scenario "admin can see other user emails" do
+    user = create_user
+    admin = create_admin
+
+    visit root_path
+    click_on "Sign In"
+    fill_in "Email", with: admin.email
+    fill_in "Password", with: admin.password
+    within (".well") do
+      click_on "Sign In"
+    end
+    click_on "Users"
+
+    expect(page).to have_content(user.email)
+    expect(page).to have_content(admin.email)
+  end
+  scenario "users can see other user emails if they share a project" do
+    user = create_user
+    user2 = create_user2
+    project = create_project
+    membership = create_owner(user, project)
+    membership2 = create_member(user2, project)
+
+    visit root_path
+    click_on "Sign In"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    within (".well") do
+      click_on "Sign In"
+    end
+    click_on "Users"
+
+    expect(page).to have_content(user.email)
+    expect(page).to have_content(user2.email)
+  end
+
+  scenario "users cannot see other user emails if they do not share a project" do
+    user = create_user
+    user2 = create_user2
+    project = create_project
+    membership = create_owner(user, project)
+
+    visit root_path
+    click_on "Sign In"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    within (".well") do
+      click_on "Sign In"
+    end
+    click_on "Users"
+
+    expect(page).to have_content(user.email)
+    expect(page).to have_no_content(user2.email)
+  end
+
 end

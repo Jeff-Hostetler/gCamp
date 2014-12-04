@@ -38,7 +38,9 @@ describe ProjectsController do
       get :show, id: project.id
       expect(response).to be_success
     end
+  end
 
+  describe"edit" do
     it "allows owners to edit" do
       user = create_user
       project = create_project
@@ -67,6 +69,5 @@ describe ProjectsController do
       get :edit, id: project.id
       expect(response).to be_success
     end
-
   end
 end
