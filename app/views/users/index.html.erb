@@ -42,11 +42,11 @@
         <td class="col-sm-10">
           <% if (current_user.admin == true) || !(current_user_array & user_array).empty? %>
           <%= mail_to(user.email)%>
-          <% end %>
         </td>
         <td>
           <%= link_to("Edit", edit_user_path(user)) %>
         </td>
+        <% end %>
       </tr>
     <%end%>
   </tbody>

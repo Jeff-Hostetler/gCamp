@@ -1,3 +1,12 @@
+<% current_user_array = [] %>
+<% current_user.memberships.each do |membership| %>
+  <% current_user_array.push(membership.project_id) %>
+<% end %>
+
+<% user_array = [] %>
+<% @user.memberships.each do |membership| %>
+  <% user_array.push(membership.project_id) %>
+<% end %>
 <div class="page-header">
   <h1>
     <%= @user.first_name %> <%= @user.last_name %>
@@ -14,7 +23,8 @@
   <dt>Last Name:</dt>
   <dd><%= @user.last_name %></dd>
   <br>
-
+  <% if (current_user.admin == true) || !(current_user_array & user_array).empty? %>
   <dt>Email:</dt>
   <dd><%= mail_to(@user.email)%></dd>
+  <% end %>
 </dl>
