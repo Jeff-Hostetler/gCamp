@@ -7,6 +7,16 @@ describe UsersController do
 
       expect(response).to redirect_to(login_path)
     end
+
+    it "allows user to see user index" do
+      user = create_user
+      session[:user_id] = user.id
+
+      get :index
+
+      expect(response).to be_success
+    end
+
   end
 
   describe "edit" do
