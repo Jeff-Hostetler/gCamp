@@ -5,7 +5,8 @@ class MembershipsController < ApplicationController
   end
 
   before_action :current_user_has_membership_permission
-  before_action :current_user_is_owner_to_edit
+  before_action :current_user_is_owner_to_edit, except: [ :destroy]
+  before_action :current_user_can_delete_self, only: [ :destroy]
 
 
   def index
@@ -37,10 +38,23 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @project.memberships.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was deleted successfully"
+    if @project.memberships.pluck(:user_id).include? current_user.id
+      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was deleted successfully"
+    else
+      redirect_to projects_path, notice: "#{@membership.user.full_name} was deleted successfully"
+    end
   end
 
   private
+
+  def current_user_can_delete_self
+    current_membership = @project.memberships.where(user_id: current_user.id)
+    current_membership.each do |membership|
+      unless membership.role.empty? && current_user.admin == false
+        @can_delete = true
+      end
+    end
+  end
 
   def current_user_has_membership_permission
     if (@project.memberships.pluck(:user_id).include? current_user.id) || (current_user.admin == true)
@@ -53,6 +67,7 @@ class MembershipsController < ApplicationController
   def current_user_is_owner_to_edit
     current_membership = @project.memberships.where(user_id: current_user.id)
     current_membership.each do |membership|
+      @membership_role = membership.role
       if (membership.role == "owner")
         @current_membership = true
       else

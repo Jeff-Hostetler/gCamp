@@ -61,6 +61,7 @@ def create_task(project)
   Task.create!(
   description: "Test Task",
   project_id: project.id,
+  due: "01/01/2999"
   )
 end
 

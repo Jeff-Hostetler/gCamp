@@ -25,6 +25,14 @@
             </div>
           </div>
 
+          <% if @can_delete = true && current_user == user %>
+          <div class ="form-group">
+            <div class ="col-sm-1">
+              <%= link_to "", project_membership_path(@project, membership), class:"glyphicon glyphicon-remove", method: :delete, data:{confirm: "Are you sure you want to delete this membership?"} %>
+            </div>
+          </div>
+          <% end %>
+
         </div>
       </div>
       <br>
