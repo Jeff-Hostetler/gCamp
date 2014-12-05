@@ -183,7 +183,7 @@ feature 'membership' do
     within (".col-sm-6") do
       click_on ""
     end
-    expect(page).to have_content "The page you were looking for doesn't exist"
+    expect(page).to have_content "Create Project"
   end
 
 
