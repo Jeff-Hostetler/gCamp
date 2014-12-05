@@ -27,21 +27,29 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    @membership = @project.memberships.find(params[:id])
-    if @membership.update(params.require(:membership).permit(:project_id, :user_id, :role))
-      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was updated successfully"
+    if @project.memberships.where(role: "owner").count < 2
+      redirect_to project_memberships_path, notice: "Sorry, you need at least one admin in this project"
     else
-      render :index
+      @membership = @project.memberships.find(params[:id])
+      if @membership.update(params.require(:membership).permit(:project_id, :user_id, :role))
+        redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was updated successfully"
+      else
+        render :index
+      end
     end
   end
 
   def destroy
     @membership = @project.memberships.find(params[:id])
-    @membership.destroy
-    if @project.memberships.pluck(:user_id).include? current_user.id
-      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was deleted successfully"
+    if @project.memberships.where(role: "owner").count < 2
+      redirect_to project_memberships_path, notice: "Sorry, you need at least one admin in this project"
     else
-      redirect_to projects_path, notice: "#{@membership.user.full_name} was deleted successfully"
+      @membership.destroy
+      if @project.memberships.pluck(:user_id).include? current_user.id
+        redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was deleted successfully"
+      else
+        redirect_to projects_path, notice: "#{@membership.user.full_name} was deleted successfully"
+      end
     end
   end
 
