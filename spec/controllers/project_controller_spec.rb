@@ -7,6 +7,15 @@ describe ProjectsController do
       get :index
       expect(response).to redirect_to(login_path)
     end
+
+    it "allows users to see" do
+      user = create_user
+      session[:user_id] = user.id
+
+      get :index
+
+      expect(response).to be_success
+    end
   end
 
   describe "show" do
@@ -68,6 +77,40 @@ describe ProjectsController do
 
       get :edit, id: project.id
       expect(response).to be_success
+    end
+  end
+
+  describe "#destroy" do
+    it "allows project owner to delete a project" do
+      user = create_user
+      project= create_project
+      membership = create_owner(user, project)
+      session[:user_id] = user.id
+
+      delete :destroy, id: project.id
+
+      expect(response).to redirect_to(projects_path)
+    end
+
+    it "does not allow project members to delete a project" do
+      user = create_user
+      project= create_project
+      membership = create_member(user, project)
+      session[:user_id] = user.id
+
+      delete :destroy, id: project.id
+
+      expect(response.status).to eq(404)
+    end
+
+    it "allows admin to delete any project" do
+      admin = create_admin
+      project= create_project
+      session[:user_id] = admin.id
+
+      delete :destroy, id: project.id
+
+      expect(response).to redirect_to(projects_path)
     end
   end
 end
