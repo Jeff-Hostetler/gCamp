@@ -41,7 +41,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership = @project.memberships.find(params[:id])
-    if (@project.memberships.where(role: "owner").count - 1) == 0 && @membership.role = "owner"
+    if ((@project.memberships.where(role: "owner").count - 1) == 0) && @membership.role == "owner"
       redirect_to project_memberships_path, notice: "Sorry, you need at least one owner on this project"
     else
       @membership.destroy
