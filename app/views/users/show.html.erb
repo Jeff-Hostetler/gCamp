@@ -23,7 +23,7 @@
   <dt>Last Name:</dt>
   <dd><%= @user.last_name %></dd>
   <br>
-  <% if (current_user.admin == true) || !(current_user_array & user_array).empty? %>
+  <% if (current_user.admin == true) || !(current_user_array & user_array).empty? || current_user == @user%>
   <dt>Email:</dt>
   <dd><%= mail_to(@user.email)%></dd>
   <% end %>
