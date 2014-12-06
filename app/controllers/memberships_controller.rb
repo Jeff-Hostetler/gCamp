@@ -28,28 +28,23 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = @project.memberships.find(params[:id])
-    if ((@project.memberships.where(role: "owner").count - 1) == 0) && @membership.role == "owner"
-      redirect_to project_memberships_path, notice: "Sorry, you need at least one owner on this project"
+    if @membership.update(params.require(:membership).permit(:project_id, :user_id, :role))
+      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was updated successfully"
     else
-      if @membership.update(params.require(:membership).permit(:project_id, :user_id, :role))
-        redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was updated successfully"
-      else
-        render :index
-      end
+      render :index
     end
   end
 
   def destroy
     @membership = @project.memberships.find(params[:id])
-    if ((@project.memberships.where(role: "owner").count - 1) == 0) && @membership.role == "owner"
-      redirect_to project_memberships_path, notice: "Sorry, you need at least one owner on this project"
-    else
-      @membership.destroy
+    if @membership.destroy
       if (@project.memberships.pluck(:user_id).include? current_user.id) || current_user.admin == true
         redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was deleted successfully"
       else
         redirect_to projects_path, notice: "#{@membership.user.full_name} was deleted successfully"
       end
+    else
+      render :index
     end
   end
 
@@ -83,5 +78,6 @@ class MembershipsController < ApplicationController
       end
     end
   end
+
 
 end
