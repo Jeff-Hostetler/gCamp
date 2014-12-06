@@ -3,7 +3,7 @@
     <% current_membership = @project.memberships.where(user_id: current_user.id) %>
     <% current_membership.each do |membership| %>
     <% @membership_role = membership.role %>
-    <% if (membership.role == "owner") %>
+    <% if (membership.role == "owner")%>
     <%= link_to 'Edit', edit_project_path, class:"btn btn-info btn-large" %>
     <% end %>
     <% end %>

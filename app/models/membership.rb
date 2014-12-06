@@ -16,6 +16,7 @@ class Membership < ActiveRecord::Base
     if ((project.memberships.where(role: "owner").count - 1) == 0) && membership.role == "owner"
       errors.add(:base, "There must be at least 1 owner on a project.")
       return false
+      redirect_to project_memberships_path(project)
     end
   end
 
