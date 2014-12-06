@@ -65,11 +65,13 @@
       </div>
     </div>
 
+    <% unless ((@project.memberships.where(role: "owner").count - 1) == 0) && membership.role == "owner" %>
     <div class ="col-sm-6">
       <div class ="form-group">
         <%= link_to "", project_membership_path(@project, membership), class:"glyphicon glyphicon-remove", method: :delete, data:{confirm: "Are you sure you want to delete this membership?"} %>
       </div>
     </div>
+    <% end %>
 </div>
 
 </div>
