@@ -45,7 +45,7 @@ class MembershipsController < ApplicationController
       redirect_to project_memberships_path, notice: "Sorry, you need at least one owner on this project"
     else
       @membership.destroy
-      if @project.memberships.pluck(:user_id).include? current_user.id
+      if (@project.memberships.pluck(:user_id).include? current_user.id) || current_user.admin == true
         redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was deleted successfully"
       else
         redirect_to projects_path, notice: "#{@membership.user.full_name} was deleted successfully"
