@@ -3,11 +3,10 @@ class MembershipsController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
-
+  before_action :set_membership, only: [:update, :destroy]
   before_action :current_user_has_membership_permission
-  before_action :current_user_is_owner_to_edit, except: [ :destroy]
-  before_action :current_user_can_delete_self, only: [ :destroy]
-
+  before_action :current_user_is_owner_to_edit, only: [:create, :update]
+  before_action :can_delete_membership, only: [:destroy]
 
   def index
     @memberships = @project.memberships.all
@@ -50,13 +49,8 @@ class MembershipsController < ApplicationController
 
   private
 
-  def current_user_can_delete_self
-    current_membership = @project.memberships.where(user_id: current_user.id)
-    current_membership.each do |membership|
-      unless membership.role.empty? && current_user.admin == false
-        @can_delete = true
-      end
-    end
+  def set_membership
+    @membership = @project.memberships.find(params[:id])
   end
 
   def current_user_has_membership_permission
@@ -71,10 +65,24 @@ class MembershipsController < ApplicationController
     current_membership = @project.memberships.where(user_id: current_user.id)
     current_membership.each do |membership|
       @membership_role = membership.role
-      if (membership.role == "owner")
-        @current_membership = true
+      if (membership.role == "owner") || (current_user.admin == true)
+        true
       else
-        @current_membership = false
+        raise AccessDenied
+      end
+    end
+  end
+
+  def can_delete_membership
+    current_membership = @project.memberships.where(user_id: current_user.id)
+    current_membership.each do |membership|
+      @membership_role = membership.role
+      if (membership.role == "owner") || (current_user.admin == true)
+        true
+      elsif @membership.user_id == current_user.id
+        true
+      else
+        raise AccessDenied
       end
     end
   end

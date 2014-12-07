@@ -1,5 +1,9 @@
-<% if (@current_membership == true) || (current_user.admin == true)  %>
-  <%= render "owner" %>
-<% else %>
-  <%= render "member" %>
+<% current_membership = @project.memberships.where(user_id: current_user.id) %>
+<% current_membership.each do |membership| %>
+  <% @membership_role = membership.role %>
+<% end %>
+  <% if (@membership_role == "owner") || (current_user.admin == true) %>
+    <%= render "owner" %>
+  <% else %>
+    <%= render "member" %>
 <% end %>
