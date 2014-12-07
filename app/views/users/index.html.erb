@@ -45,7 +45,7 @@
           <% end %>
         </td>
         <td>
-          <% if (current_user.admin == true) || !(current_user_array & user_array).empty? || current_user == user %>
+          <% if (current_user.admin == true)  || current_user == user %>
           <%= link_to("Edit", edit_user_path(user)) %>
           <% end %>
         </td>

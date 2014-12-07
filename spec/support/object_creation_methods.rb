@@ -72,3 +72,10 @@ def create_comment(user, task)
     task_id: task.id,
   )
 end
+
+def log_user_in(user)
+  visit login_path
+  fill_in "email", with: user.email
+  fill_in "password", with: user.password
+  click_on "Sign In"
+end
