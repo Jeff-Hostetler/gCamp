@@ -144,11 +144,11 @@ describe MembershipsController do
       membership2 = create_member(user2, project)
       session[:user_id] = user.id
 
-      expect(Membership.count == 2)
+      expect(Membership.count).to eq(2)
 
       delete :destroy, project_id: project.id, id: membership2.id
 
-      expect(Membership.count == 1)
+      expect(Membership.count).to eq(1)
     end
     it "allows admin to delete memberships" do
       admin = create_admin
@@ -159,11 +159,11 @@ describe MembershipsController do
       membership2 = create_member(user2, project)
       session[:user_id] = admin.id
 
-      expect(Membership.count == 2)
+      expect(Membership.count).to eq(2)
 
       delete :destroy, project_id: project.id, id: membership2.id
 
-      expect(Membership.count == 1)
+      expect(Membership.count).to eq(1)
     end
     it "does not allow members to delete memberships" do
       user = create_user
@@ -173,11 +173,11 @@ describe MembershipsController do
       membership2 = create_member(user2, project)
       session[:user_id] = user2.id
 
-      expect(Membership.count == 2)
+      expect(Membership.count).to eq(2)
 
-      delete :destroy, project_id: project.id, id: membership2.id
+      delete :destroy, project_id: project.id, id: membership.id
 
-      expect(Membership.count == 2)
+      expect(Membership.count).to eq(2)
     end
     it "does not allow non-members to delete memberships" do
       user = create_user
@@ -186,11 +186,11 @@ describe MembershipsController do
       membership = create_owner(user, project)
       session[:user_id] = user2.id
 
-      expect(Membership.count == 2)
+      expect(Membership.count).to eq(1)
 
       delete :destroy, project_id: project.id, id: membership.id
 
-      expect(Membership.count == 2)
+      expect(Membership.count).to eq(1)
     end
   end
 end

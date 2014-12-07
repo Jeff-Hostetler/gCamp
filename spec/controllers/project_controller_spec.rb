@@ -23,12 +23,11 @@ describe ProjectsController do
       user = create_user
       session[:user_id] = user.id
 
-      expect(Project.count == 0)
+      expect(Project.count).to eq(0)
 
-      post :create, project: {description: "test"}
+      post :create, project: {name: "test"}
 
-      expect(response).to be_success
-      expect(Project.count == 1)
+      expect(Project.count).to eq(1)
     end
   end
 
@@ -101,9 +100,11 @@ describe ProjectsController do
       membership = create_owner(user, project)
       session[:user_id] = user.id
 
+      expect(Project.count).to eq(1)
+
       delete :destroy, id: project.id
 
-      expect(response).to redirect_to(projects_path)
+      expect(Project.count).to eq(0)
     end
 
     it "does not allow project members to delete a project" do
@@ -112,9 +113,12 @@ describe ProjectsController do
       membership = create_member(user, project)
       session[:user_id] = user.id
 
+      expect(Project.count).to eq(1)
+
       delete :destroy, id: project.id
 
       expect(response.status).to eq(404)
+      expect(Project.count).to eq(1)
     end
 
     it "allows admin to delete any project" do
@@ -122,9 +126,12 @@ describe ProjectsController do
       project= create_project
       session[:user_id] = admin.id
 
+      expect(Project.count).to eq(1)
+
       delete :destroy, id: project.id
 
       expect(response).to redirect_to(projects_path)
+      expect(Project.count).to eq(0)
     end
   end
 end
