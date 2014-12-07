@@ -16,6 +16,33 @@ describe UsersController do
 
       expect(response).to be_success
     end
+  end
+
+  describe "create" do
+    it "allows admin to create a user" do
+      admin = create_admin
+      session[:user_id] = admin.id
+
+      post :create, user: {first_name: "Test",
+                          last_name: "User",
+                          email: "test@test.com",
+                          password: "password",
+                          password_confirmation: "password"}
+
+    expect(User.count == 2)
+    end
+    it "allows user to create a user" do
+      user = create_user
+      session[:user_id] = user.id
+
+      post :create, user: {first_name: "Test",
+                          last_name: "User",
+                          email: "test22@test.com",
+                          password: "password",
+                          password_confirmation: "password"}
+
+        expect(User.count == 2)
+      end
 
   end
 
@@ -48,6 +75,72 @@ describe UsersController do
 
       expect(response).to be_success
     end
+  end
+  describe "#update" do
+    it "allows user to update thier info" do
+      user = create_user
+      session[:user_id] = user.id
 
+      patch :update, id: user.id, user: {first_name: "Test",
+                                        last_name: "User",
+                                        email: "test22@test.com",
+                                        password: "password",
+                                        password_confirmation: "password"}
+      expect(user.reload.email).to eq("test22@test.com")
+    end
+
+    it "allows admin to update user info" do
+      admin = create_admin
+      user = create_user
+      session[:user_id] = admin.id
+
+      patch :update, id: user.id, user: {first_name: "Test",
+                                        last_name: "User",
+                                        email: "test22@test.com",
+                                        password: "password",
+                                        password_confirmation: "password"}
+      expect(user.reload.email).to eq("test22@test.com")
+    end
+    it "allows user to update thier info" do
+      user = create_user
+      user2 = create_user2
+      session[:user_id] = user2.id
+
+      patch :update, id: user.id, user: {first_name: "Test",
+                                        last_name: "User",
+                                        email: "test22@test.com",
+                                        password: "password",
+                                        password_confirmation: "password"}
+      expect(response.status).to eq(404)
+    end
+  end
+
+  describe "delete" do
+    it "allows user to delete themself" do
+      user = create_user
+      session[:user_id] = user.id
+
+      delete :destroy, id: user.id
+
+      expect(User.count).to eq(0)
+    end
+    it "allows admin to delete user" do
+      user = create_user
+      admin = create_admin
+      session[:user_id] = admin.id
+
+      delete :destroy, id: user.id
+
+      expect(User.count).to eq(1)
+    end
+    it "does not allow user to delete another" do
+      user = create_user
+      user2 = create_user2
+      session[:user_id] = user2.id
+
+      delete :destroy, id: user.id
+
+      expect(User.count).to eq(2)
+    end
   end
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :current_user_can_edit_own_info, only: [:edit, :update]
+  before_action :current_user_can_edit_own_info, only: [:edit, :update, :destroy]
 
 
   def index
@@ -46,8 +46,6 @@ class UsersController < ApplicationController
         render :edit
       end
     end
-
-
   end
 
   def destroy
