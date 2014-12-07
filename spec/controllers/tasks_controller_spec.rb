@@ -57,6 +57,34 @@ describe TasksController do
     end
   end
 
+  describe "#create" do
+    it "allows member to create tasks" do
+      user = create_user
+      project = create_project
+      membership = create_owner(user, project)
+      session[:user_id] = user.id
+      post :create, project_id: project.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(302)
+    end
+    it "allows admin to create tasks" do
+      admin = create_admin
+      project = create_project
+      session[:user_id] = admin.id
+      post :create, project_id: project.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(302)
+    end
+    it "does not allow non-member to create tasks" do
+      user = create_user
+      project = create_project
+      session[:user_id] = user.id
+      post :create, project_id: project.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(404)
+    end
+  end
+
   describe "#show" do
     it "shows task to members" do
       user = create_user
@@ -95,7 +123,7 @@ describe TasksController do
   end
 
   describe "#edit" do
-    it "allows user to edit tasks within a project of which they are a member" do
+    it "allows member to edit task" do
       user = create_user
       project = create_project
       task = create_task(project)
@@ -129,16 +157,66 @@ describe TasksController do
       expect(response).to be_success
     end
   end
-  # describe "#update" do
-  #   it "allows user to update tasks" do
-  #     user = create_user
-  #     project = create_project
-  #     task = create_task(project)
-  #     membership = create_member(user, project)
-  #     session[:user_id] = user.id
-  #     patch :update, project_id: project.id, id: task.id
-  #
-  #     expect(response.status).to eq.(302)
-  #   end
-  # end
+  describe "#update" do
+    it "allows member to update tasks" do
+      user = create_user
+      project = create_project
+      task = create_task(project)
+      membership = create_member(user, project)
+      session[:user_id] = user.id
+      patch :update, project_id: project.id, id: task.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(302)
+    end
+    it "allows admin to update tasks" do
+      admin = create_admin
+      project = create_project
+      task = create_task(project)
+      session[:user_id] = admin.id
+      patch :update, project_id: project.id, id: task.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(302)
+    end
+    it "does not allow non-member to update tasks" do
+      user = create_user
+      project = create_project
+      task = create_task(project)
+      session[:user_id] = user.id
+      patch :update, project_id: project.id, id: task.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(404)
+    end
+  end
+
+  describe "#delete" do
+
+    it "allows member to delete tasks" do
+      user = create_user
+      project = create_project
+      task = create_task(project)
+      membership = create_owner(user, project)
+      session[:user_id] = user.id
+      delete :destroy, project_id: project.id, id: task.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(302)
+    end
+    it "allows admin to delete tasks" do
+      admin = create_admin
+      project = create_project
+      task = create_task(project)
+      session[:user_id] = admin.id
+      delete :destroy, project_id: project.id, id: task.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(302)
+    end
+    it "does not allow non-member to delete tasks" do
+      user = create_user
+      project = create_project
+      task = create_task(project)
+      session[:user_id] = user.id
+      delete :destroy, project_id: project.id, id: task.id, task: { project_id: project, description: Faker::Lorem.sentence }
+
+      expect(response.status).to eq(404)
+    end
+  end
 end
