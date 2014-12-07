@@ -18,6 +18,20 @@ describe ProjectsController do
     end
   end
 
+  describe "create" do
+    it "allows user to create project" do
+      user = create_user
+      session[:user_id] = user.id
+
+      expect(Project.count == 0)
+
+      post :create, project: {description: "test"}
+
+      expect(response).to be_success
+      expect(Project.count == 1)
+    end
+  end
+
   describe "show" do
     it "shows users projects they are members of" do
       user = create_user
