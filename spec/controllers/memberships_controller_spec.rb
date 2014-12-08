@@ -165,7 +165,7 @@ describe MembershipsController do
 
       expect(Membership.count).to eq(1)
     end
-    it "does not allow members to delete memberships" do
+    it "does not allow members to delete other memberships" do
       user = create_user
       user2 = create_user2
       project = create_project
@@ -178,6 +178,20 @@ describe MembershipsController do
       delete :destroy, project_id: project.id, id: membership.id
 
       expect(Membership.count).to eq(2)
+    end
+    it "members can delete own memberships" do
+      user = create_user
+      user2 = create_user2
+      project = create_project
+      membership = create_owner(user, project)
+      membership2 = create_member(user2, project)
+      session[:user_id] = user2.id
+
+      expect(Membership.count).to eq(2)
+
+      delete :destroy, project_id: project.id, id: membership2.id
+
+      expect(Membership.count).to eq(1)
     end
     it "does not allow non-members to delete memberships" do
       user = create_user
