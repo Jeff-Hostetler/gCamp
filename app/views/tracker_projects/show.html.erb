@@ -1,0 +1,12 @@
+<div class="page-header">
+  <div class="pull-right">
+    (showing first 500)
+  </div>
+  <h1>Projects for <%=   %></h1>
+</div>
+
+<% @pivotal_stories.each do |story| %>
+<ul>
+  <li><%= link_to story[:name], story[:url] %></li>
+</ul>
+<% end %>

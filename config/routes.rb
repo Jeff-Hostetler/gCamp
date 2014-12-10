@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :memberships
   end
 
+  resources :tracker_projects, only: [:show]
+
 
 
   get "/login" => "sessions#new", as: :login

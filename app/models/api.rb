@@ -12,7 +12,18 @@ class API
       req.headers['X-TrackerToken'] = current_user.pivotal_token
     end
 
-      json_response = JSON.parse(response.body, symbolize_names: true)
-
+    json_response = JSON.parse(response.body, symbolize_names: true)
   end
+
+  def pivotal_tracker_stories(current_user, project)
+
+    response = @conn.get do |req|
+      req.url "https://www.pivotaltracker.com/services/v5/projects/#{project}/stories"
+      req.headers['Content-Type'] = 'application/json'
+      req.headers['X-TrackerToken'] = current_user.pivotal_token
+    end
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+  end
+
 end
