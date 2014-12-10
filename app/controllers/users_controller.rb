@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def create
     if (current_user != nil) && current_user.admin == true
       @user = User.new(params.require(:user).permit(:first_name, :last_name, :email,
-      :password, :password_confirmation, :admin))
+      :password, :password_confirmation, :admin, :pivotal_token))
     else
       @user = User.new(user_params)
     end
@@ -34,13 +34,13 @@ class UsersController < ApplicationController
 
   def update
     if (current_user != nil) && current_user.admin == true
-      if @user.update(params.require(:user).permit(:first_name, :last_name, :email, :admin))
+      if @user.update(params.require(:user).permit(:first_name, :last_name, :email, :admin, :pivotal_token))
         redirect_to @user, notice: 'User was successfully updated.'
       else
         render :edit
       end
     else
-      if @user.update(params.require(:user).permit(:first_name, :last_name, :email))
+      if @user.update(params.require(:user).permit(:first_name, :last_name, :email, :pivotal_token))
         redirect_to @user, notice: 'User was successfully updated.'
       else
         render :edit
@@ -50,10 +50,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.'}
-      format.json { head :no_content }
-    end
+    redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
   private
@@ -63,8 +60,8 @@ class UsersController < ApplicationController
     end
 
   def user_params
-      params.require(:user).permit(:first_name, :last_name, :email,
-      :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email,
+    :password, :password_confirmation, :pivotal_token)
   end
 
   private

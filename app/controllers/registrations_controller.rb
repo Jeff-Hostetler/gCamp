@@ -6,7 +6,7 @@ class RegistrationsController < PublicController
 
   def create
     @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation,
-    :first_name, :last_name))
+    :first_name, :last_name, :pivotal_token))
     if @user.save
       session[:user_id] = @user.id
       redirect_to new_project_path

@@ -27,4 +27,9 @@
   <dt>Email:</dt>
   <dd><%= mail_to(@user.email)%></dd>
   <% end %>
+  <br>
+  <% unless @user.pivotal_token == nil %>
+    <dt>Pivotal Tracker Token:</dt>
+    <dd><%= @user.pivotal_token[0..3]%>****************************</dd>
+  <% end %>
 </dl>

@@ -32,8 +32,6 @@
     </div>
   </div>
 
-
-
   <% if (params.has_key?(:id)) %>
   <% else %>
   <div class="form-group">
@@ -49,6 +47,13 @@
     </div>
   </div>
   <% end %>
+
+  <div class="form-group">
+    <%= f.label :pivotal_token,"Pivotal Tracker Token",  class:"col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :pivotal_token, class:"form-control" %>
+    </div>
+  </div>
 
   <% if current_user.admin == true %>
   <div class="form-group">

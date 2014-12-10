@@ -43,6 +43,7 @@ end
 
 gem 'faker'
 
+gem 'faraday'
 # Use unicorn as the app server
 # gem 'unicorn'
 

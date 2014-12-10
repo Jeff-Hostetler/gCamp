@@ -131,6 +131,7 @@ feature "users" do
     fill_in "Email", with: "email@email.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
+    fill_in "Pivotal Tracker Token", with: "password"
     click_on "Create User"
     expect(page).to have_content('First Last')
     expect(page).to have_content('User was successfully created.')
@@ -167,9 +168,10 @@ feature "users" do
     click_on "Edit"
     fill_in "First name", with: "First1"
     fill_in "Last name", with: "Last1"
-    # save_and_open_page
+    fill_in "Pivotal Tracker Token", with: "1234567"
     click_on "Update User"
     expect(page).to have_content("First1 Last1")
+    expect(page).to have_content("1234****************************")
   end
 
   scenario "delete user" do
