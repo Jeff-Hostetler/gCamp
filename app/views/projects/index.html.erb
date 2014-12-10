@@ -34,6 +34,8 @@
   </tbody>
 </table>
 
+<hr>
+
 <div class="page-header">
   <h1>Pivotal Tracker Projects</h1>
 </div>
@@ -45,6 +47,7 @@
     </th>
   </thead>
   <tbody>
+    <% unless @pivotal_projects == nil %>
     <% @pivotal_projects.each do |project|%>
     <tr>
       <td>
@@ -52,6 +55,7 @@
       </td>
     </tr>
     <%end%>
+    <% end %>
   </tbody>
 </table>
 <hr>
