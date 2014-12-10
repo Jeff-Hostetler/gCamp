@@ -3,7 +3,9 @@ class ProjectsController <  ApplicationController
   before_action :current_user_has_project_permission, except: [:index, :new, :create, :destroy]
   before_action :current_user_is_owner_to_edit, only: [:edit, :update, :destroy]
 
+
   def index
+    @pivotal_projects = API.new.pivotal_projects(current_user)
     if current_user.admin == true
       @projects = Project.all
     else
@@ -49,6 +51,8 @@ class ProjectsController <  ApplicationController
     end
   end
 
+
+
   private
 
   def project_params
@@ -81,5 +85,6 @@ class ProjectsController <  ApplicationController
       end
     end
   end
+
 
 end
