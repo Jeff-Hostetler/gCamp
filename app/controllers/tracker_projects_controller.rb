@@ -1,7 +1,8 @@
 class TrackerProjectsController < ApplicationController
 
   def show
-      @pivotal_stories = API.new.pivotal_tracker_stories(current_user, params[:id])
+    @pivotal_project = API.new.pivotal_single_project(current_user, params[:id])
+    @pivotal_stories = API.new.pivotal_stories(current_user, params[:id])
   end
 
 end
