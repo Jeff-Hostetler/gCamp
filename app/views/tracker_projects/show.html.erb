@@ -9,16 +9,16 @@
 
 <table class="table table-striped table-bordered">
   <thead>
-    <th>
-      Name
+    <th class="active">
+      Story
     </th>
-    <th>
+    <th class="active">
       Estimate
     </th>
-    <th>
+    <th class="active">
       Labels
     </th>
-    <th>
+    <th class="active">
       Current State
     </th>
   </thead>
@@ -33,7 +33,7 @@
       </td>
       <td>
         <% unless story[:labels][0] == nil %>
-        <%= story[:labels][0].values[3] %>, <%= story[:labels][0].values[2] %>
+        <%= "#{story[:labels][0].values[3]}#{", " if story[:labels][1] != nil}#{story[:labels][1].values[3]if story[:labels][1] != nil}" %>
         <% end %>
       </td>
       <td>

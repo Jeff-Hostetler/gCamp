@@ -11,8 +11,9 @@ class API
       req.headers['Content-Type'] = 'application/json'
       req.headers['X-TrackerToken'] = current_user.pivotal_token
     end
-
-    json_response = JSON.parse(response.body, symbolize_names: true)
+    if response.success?
+      json_response = JSON.parse(response.body, symbolize_names: true)
+    end
   end
 
   def pivotal_single_project(current_user, project_id)
@@ -21,8 +22,9 @@ class API
       req.headers['Content-Type'] = 'application/json'
       req.headers['X-TrackerToken'] = current_user.pivotal_token
     end
-
-    json_response = JSON.parse(response.body, symbolize_names: true)
+    if response.success?
+      json_response = JSON.parse(response.body, symbolize_names: true)
+    end
   end
 
   def pivotal_stories(current_user, project_id)
@@ -30,10 +32,10 @@ class API
       req.url "https://www.pivotaltracker.com/services/v5/projects/#{project_id}/stories?limit=500"
       req.headers['Content-Type'] = 'application/json'
       req.headers['X-TrackerToken'] = current_user.pivotal_token
-
     end
-
-    json_response = JSON.parse(response.body, symbolize_names: true)
+    if response.success?
+      json_response = JSON.parse(response.body, symbolize_names: true)
+    end
   end
 
 end

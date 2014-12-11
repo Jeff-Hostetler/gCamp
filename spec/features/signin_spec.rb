@@ -12,7 +12,6 @@ feature "registration/ session" do
     fill_in "Email", with: "test1@test.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
-    fill_in "Pivotal Tracker Token", with: "1234567890"
     click_button("Sign Up")
     expect(page).to have_content("First Last")
     # new user can logout
