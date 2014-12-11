@@ -3,6 +3,8 @@
 
 ![](https://travis-ci.org/Jeff-Hostetler/gCamp.svg?branch=master)
 
+[![Code Climate](https://codeclimate.com/github/Jeff-Hostetler/gCamp/badges/gpa.svg)](https://codeclimate.com/github/Jeff-Hostetler/gCamp)
+
 * GitHub repo => https://github.com/Jeff-Hostetler/gCamp
 
 This README would normally document whatever steps are necessary to get the
